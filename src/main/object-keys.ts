@@ -38,6 +38,17 @@ export function compilePropertyName(str: string): string {
   return isIdentifier(str) || isArrayIndex(str) ? str : JSON.stringify(str);
 }
 
+/**
+ * Returns a getter of the property.
+ *
+ * @param key The key of the property.
+ * @param optional If `true` then optional chaining syntax is used.
+ *
+ * @example
+ * compilePropertyGetter('foo'); // → .foo
+ *
+ * compilePropertyGetter('foo bar', true); // → ?.["foo bar"]
+ */
 export function compilePropertyGetter(key: string, optional = false): string {
   if (isIdentifier(key)) {
     return (optional ? '?.' : '.') + key;
