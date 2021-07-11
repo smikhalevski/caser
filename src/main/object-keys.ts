@@ -45,11 +45,11 @@ export function compilePropertyName(str: string): string {
  * @param optional If `true` then optional chaining syntax is used.
  *
  * @example
- * compilePropertyGetter('foo'); // → .foo
+ * compilePropertyAccessor('foo'); // → .foo
  *
- * compilePropertyGetter('foo bar', true); // → ?.["foo bar"]
+ * compilePropertyAccessor('foo bar', true); // → ?.["foo bar"]
  */
-export function compilePropertyGetter(key: string, optional = false): string {
+export function compilePropertyAccessor(key: string, optional = false): string {
   if (isIdentifier(key)) {
     return (optional ? '?.' : '.') + key;
   }
