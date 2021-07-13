@@ -1,17 +1,27 @@
-import {countVarRefs, inlineVars, ts} from '../../main/cg/cg-dsl';
+import {cg} from '../../main/cg/cg-template';
+import {compileTsSource} from '../../main/cg/cg-compiler';
 
 describe('ts', () => {
 
   test('', () => {
-    const var1 = ts.var();
-    const var2 = ts.var();
 
-    const a = ts`aaa${ts.let(var1, ts`AAA`)}bbb${ts.let(var2, ts`XXX${var1}ZZZ`)}ccc${var2}`;
+    const parentValueVar = cg.var();
 
-    inlineVars(a.children)
 
-    // const q = countVarRefs(a.children, 0, leVar.id);
+    const indexVar = cg.var();
+    const valueVar = cg.var();
+    const qqqVar = cg.var();
 
-    expect(a).toBe('')
-  })
+    const n = cg.block`export function validateFoo(${parentValueVar}){${cg(
+        cg.block`if(Array.isArray(${parentValueVar})){${cg(
+            cg.block`for(${indexVar}=0;${indexVar}<${parentValueVar}.length;${indexVar}++){${cg(
+                cg.let(valueVar, cg`arr[${indexVar}]`),
+                cg`r.isArr(${valueVar})`,
+            )}}`,
+            cg.let(qqqVar, cg`123`),
+        )}}`,
+    )}}`;
+
+    expect(compileTsSource(n)).toBe('');
+  });
 });

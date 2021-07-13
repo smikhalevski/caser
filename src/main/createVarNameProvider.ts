@@ -1,46 +1,48 @@
-const fromCharCode = String.fromCharCode;
+export interface IVarNameProvider {
 
-const nextCharCode = (charCode: number): number => charCode === 122 /*z*/ ? 65 /*A*/ : charCode === 90 /*Z*/ ? -1 : charCode + 1;
+  /**
+   * Returns the next valid variable name.
+   */
+  next(): string;
 
-function nextVarName(charCodes: Array<number>): string {
-  let charCode = nextCharCode(charCodes[charCodes.length - 1]);
-
-  if (charCode !== -1) {
-    charCodes[charCodes.length - 1] = charCode;
-    return fromCharCode(...charCodes);
-  }
-
-  for (let i = charCodes.length - 2; i > -1; i--) {
-    const charCode = nextCharCode(charCodes[i]);
-
-    if (charCode !== -1) {
-      charCodes[i] = charCode;
-      charCodes.fill(97 /*a*/, i + 1);
-      return fromCharCode(...charCodes);
-    }
-  }
-
-  charCodes.push(97 /*a*/);
-  charCodes.fill(97 /*a*/);
-
-  return fromCharCode(...charCodes);
+  /**
+   * Returns allocated name back to provider.
+   */
+  free(varName: string): void;
 }
 
-/**
- * Creates a callback that returns the next valid variable name when called.
- *
- * @param excludedVarNames The list of the excluded names.
- */
-export function createVarNameProvider(excludedVarNames?: ReadonlyArray<string>): () => string {
+export function createVarNameProvider(): IVarNameProvider {
+  const excludedVarNames = new Set<string>();
+  return {
 
-  const charCodes: Array<number> = [97 - 1 /*a - 1*/];
+    next() {
+      let varName;
+      let index = 0;
+      while (excludedVarNames.has(varName = encodeLetters(index))) {
+        index++;
+      }
+      excludedVarNames.add(varName);
+      return varName;
+    },
 
-  return () => {
-    let name = nextVarName(charCodes);
-
-    while (excludedVarNames?.includes(name)) {
-      name = nextVarName(charCodes);
-    }
-    return name;
+    free(varName) {
+      excludedVarNames.delete(varName);
+    },
   };
+}
+
+export function encodeLetters(index: number): string {
+  let str = '';
+
+  index = Math.abs(index);
+  do {
+    let charCode = index % 52;
+    charCode = charCode >= 26 ? 65 /*A*/ - 26 + charCode : 97 /*a*/ + charCode;
+
+    str = String.fromCharCode(charCode) + str;
+    index = Math.floor(index / 52);
+
+  } while (index-- !== 0);
+
+  return str;
 }

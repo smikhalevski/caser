@@ -1,3 +1,3 @@
-# ts-dsl
+# codegen
 
 An opinionated set of TypeScript codegen utils.

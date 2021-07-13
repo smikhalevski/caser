@@ -1,36 +1,35 @@
-import {CgNodeType, ISourceCgNode} from './cg-ast-types';
-import {walkChildren} from './cg-ast';
-import {compileDocComment} from '../comments';
+import {IFragmentCgNode} from './cg-ast-types';
 import {createVarNameProvider} from '../createVarNameProvider';
+import {visitCgNode} from './cg-visitor';
 
-export function compileTsSource(node: ISourceCgNode): string {
+export function compileTsSource(node: IFragmentCgNode): string {
 
-  const nextVarName = createVarNameProvider();
+  const varNameProvider = createVarNameProvider();
 
   const varMap: Record<string, string> = Object.create(null);
 
   let src = '';
 
-  walkChildren(node.children, 0, (child) => {
-    if (typeof child === 'string') {
-      src += child;
-      return;
-    }
-    switch (child.nodeType) {
+  visitCgNode(node, {
 
-      case CgNodeType.COMMENT:
-        src += compileDocComment(child.value);
-        break;
+    fragment(node, next) {
+      next();
+    },
 
-      case CgNodeType.VAR_ASSIGNMENT:
-        src += varMap[child.varId] ||= nextVarName();
-        src += '=';
-        break;
+    varAssignment(node, next) {
+      src += varMap[node.varId] ||= varNameProvider.next();
+      src += '=';
+      next();
+      src += ';';
+    },
 
-      case CgNodeType.VAR_REF:
-        src += varMap[child.varId] ||= nextVarName();
-        break;
-    }
+    varRef(node) {
+      src += varMap[node.varId] ||= varNameProvider.next();
+    },
+
+    source(source) {
+      src += source;
+    },
   });
 
   return src;

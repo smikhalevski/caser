@@ -1,49 +1,37 @@
 /**
- * Types of the codegen AST nodes.
+ * The type of a codegen node.
  */
 export const enum CgNodeType {
   VAR_ASSIGNMENT = 'VAR_ASSIGNMENT',
   VAR_REF = 'VAR_REF',
-  COMMENT = 'COMMENT',
-  BLOCK = 'BLOCK',
-  SOURCE = 'SOURCE',
+  FRAGMENT = 'FRAGMENT',
 }
 
+/**
+ * A codegen node.
+ */
 export type CgNode =
-    | ISourceCgNode
-    | IBlockCgNode
     | IVarAssignmentCgNode
     | IVarRefCgNode
-    | ICommentCgNode;
+    | IFragmentCgNode;
 
 /**
- * Valid child of a source node.
+ * The valid child of a code fragment.
  */
-export type SourceChild =
-    | IBlockCgNode
-    | IVarAssignmentCgNode
-    | IVarRefCgNode
-    | ICommentCgNode
-    | string;
+export type FragmentChild = CgNode | string | number | boolean;
 
 /**
- * The source code node.
+ * The source code fragment.
  */
-export interface ISourceCgNode {
-  nodeType: CgNodeType.SOURCE;
-  children: Array<SourceChild>;
-}
-
-/**
- * The source code block node defines the scope in which {@link IVarAssignmentCgNode} can be inlined.
- */
-export interface IBlockCgNode {
-  nodeType: CgNodeType.BLOCK;
+export interface IFragmentCgNode {
+  nodeType: CgNodeType.FRAGMENT;
+  children: Array<FragmentChild>;
 
   /**
-   * The source code of this block.
+   * If `true` then fragment isn't merged with enclosing fragment when nested. When retained, fragment creates a scope
+   * in which {@link IVarAssignmentCgNode} would to be inlined during optimization.
    */
-  valueNode: ISourceCgNode;
+  retained: boolean;
 }
 
 /**
@@ -60,7 +48,7 @@ export interface IVarAssignmentCgNode {
   /**
    * The value that is assigned to the variable.
    */
-  valueNode: ISourceCgNode;
+  children: Array<FragmentChild>;
 
   /**
    * If `true` then this assignment would always be preserved in the output. Otherwise it can be inlined if used once
@@ -79,16 +67,9 @@ export interface IVarRefCgNode {
    * The ID of the variable. Variable references with the same index refer to the same variable.
    */
   varId: string;
-}
-
-/**
- * The comment node.
- */
-export interface ICommentCgNode {
-  nodeType: CgNodeType.COMMENT;
 
   /**
-   * The comment text value.
+   * If `true` then variable can be reused when referenced outside of the block where it was assigned.
    */
-  value: string;
+  recyclable: boolean;
 }

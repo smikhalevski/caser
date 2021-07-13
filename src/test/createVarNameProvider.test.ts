@@ -1,4 +1,11 @@
-import {createVarNameProvider} from '../main/createVarNameProvider';
+import {createVarNameProvider, encode} from '../main/createVarNameProvider';
+
+describe('createVarNameProvider', () => {
+
+  test('', () => {
+    expect(encode(52)).toBe('')
+  })
+});
 
 describe('createVarNameProvider', () => {
 
