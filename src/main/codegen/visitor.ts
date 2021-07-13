@@ -1,4 +1,4 @@
-import {CgNode, CgNodeType, FragmentChild, IFragmentCgNode, IVarAssignmentCgNode, IVarRefCgNode} from './cg-ast-types';
+import {CgNode, CgNodeType, FragmentChild, IFragmentCgNode, IVarAssignmentCgNode, IVarRefCgNode} from './ast-types';
 
 export interface ICgNodeVisitor {
   fragment?: (node: IFragmentCgNode, next: () => void) => void;

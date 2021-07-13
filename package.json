@@ -1,7 +1,7 @@
 {
   "name": "@smikhalevski/codegen",
   "version": "1.0.0",
-  "description": "An opinionated set of TypeScript codegen utils.",
+  "description": "Language-agnostic codegen utils.",
   "main": "./lib/index-cjs.js",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -9,7 +9,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "set -e; tsc; npm run rollup; npm run terser",
+    "build": "set -e; tsc; npm run rollup",
     "rollup": "rollup --exports named --input ./lib/index.js --file ./lib/index-cjs.js --format cjs --plugin @rollup/plugin-node-resolve",
     "terser": "terser --compress --mangle toplevel --output ./lib/index-cjs.js -- ./lib/index-cjs.js",
     "clean": "rm -rf ./lib",
@@ -26,15 +26,23 @@
   },
   "homepage": "https://github.com/smikhalevski/codegen#readme",
   "jest": {
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "moduleNameMapper": {
+      "lodash-es": "lodash"
+    }
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@types/jest": "^26.0.23",
     "jest": "^27.0.2",
+    "lodash": "^4.17.21",
     "rollup": "^2.50.5",
     "terser": "^5.7.0",
     "ts-jest": "^27.0.2",
     "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "@types/lodash-es": "^4.17.4",
+    "lodash-es": "^4.17.21"
   }
 }

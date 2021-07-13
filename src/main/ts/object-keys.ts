@@ -23,7 +23,7 @@ export function isArrayIndex(str: string): boolean {
 }
 
 /**
- * Wraps given property name with quotes if needed so it can be used as a property name in an object declaration.
+ * Wraps given property key with quotes if needed so it can be used as a property name in an object declaration.
  *
  * @example
  * compilePropertyName('foo bar'); // → '"foo bar"'

@@ -67,9 +67,4 @@ export interface IVarRefCgNode {
    * The ID of the variable. Variable references with the same index refer to the same variable.
    */
   varId: string;
-
-  /**
-   * If `true` then variable can be reused when referenced outside of the block where it was assigned.
-   */
-  recyclable: boolean;
 }

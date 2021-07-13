@@ -1,4 +1,4 @@
-import {compileDocComment} from '../main/comments';
+import {compileDocComment} from '../../main/ts/comments';
 
 describe('compileDocComment', () => {
 

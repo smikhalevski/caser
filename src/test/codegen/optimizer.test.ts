@@ -1,6 +1,6 @@
-import {template as _} from '../../main/cg/cg-template';
-import {countVarRefs, inlineVarAssignments, WalkDirection, walkFragmentChildren} from '../../main/cg/cg-optimizer';
-import {CgNodeType} from '../../main/cg/cg-ast-types';
+import {template as _} from '../../main/codegen/template';
+import {countVarRefs, inlineVarAssignments, WalkDirection, walkFragmentChildren} from '../../main/codegen/optimizer';
+import {CgNodeType} from '../../main/codegen/ast-types';
 
 describe('walkFragmentChildren', () => {
 
@@ -83,7 +83,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`aaa${_.assignment(varRef, 'AAA')}bbb`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual(['aaa', '', 'bbb']);
   });
@@ -92,7 +92,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`aaa${_.assignment(varRef, _`${varRef}AAA`)}bbb`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual(['aaa', '', 'bbb']);
   });
@@ -101,7 +101,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`aaa${_.assignment(varRef, _`${varRef}AAA`)}bbb${varRef}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual(['aaa', '', 'bbb', '', '', varRef, 'AAA', '']);
   });
@@ -110,7 +110,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`aaa${_.assignment(varRef, 'AAA')}bbb${varRef}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual(['aaa', '', 'bbb', '', 'AAA', '']);
   });
@@ -119,7 +119,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`${varRef}aaa${_.assignment(varRef, 'AAA')}bbb${varRef}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual(['', varRef, 'aaa', '', 'bbb', '', 'AAA', '']);
   });
@@ -128,7 +128,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`aaa${_.block`${_.assignment(varRef, 'AAA')}bbb${varRef}`}ccc${varRef}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual([
       'aaa',
@@ -148,7 +148,7 @@ describe('inlineVarAssignments', () => {
     const varRef2 = _.var();
     const block = _.block`aaa${_.assignment(varRef1, 'AAA')}${_.assignment(varRef2, _`BBB${varRef1}CCC`)}${varRef2}${varRef2}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual([
       'aaa',
@@ -172,7 +172,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`${_.assignment(varRef, 'AAA')}${_.assignment(varRef, _`${varRef}BBB`)}${varRef}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual(['', '', '', '', '', '', '', '', 'AAA', 'BBB', '']);
   });
@@ -181,7 +181,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`${_.assignment(varRef, 'AAA', true)}${varRef}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual([
       '',
@@ -205,7 +205,7 @@ describe('inlineVarAssignments', () => {
     const varRef = _.var();
     const block = _.block`${_.assignment(varRef, 'AAA', true)}`;
 
-    inlineVarAssignments(block.children);
+    inlineVarAssignments(block);
 
     expect(block.children).toEqual([
       '',

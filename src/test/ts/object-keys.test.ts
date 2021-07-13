@@ -1,4 +1,4 @@
-import {compilePropertyAccessor, compilePropertyName} from '../main/object-keys';
+import {compilePropertyAccessor, compilePropertyName} from '../../main/ts/object-keys';
 
 describe('compilePropertyName', () => {
 

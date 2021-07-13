@@ -1,7 +1,7 @@
-import {CgNodeType, FragmentChild, IFragmentCgNode} from './cg-ast-types';
-import {CgTemplate, CgTemplateChild} from './cg-template-types';
+import {CgNodeType, FragmentChild, IFragmentCgNode} from './ast-types';
+import {ICgTemplate, CgTemplateChild} from './template-types';
 
-export const template: CgTemplate = function (strs): IFragmentCgNode {
+export const template: ICgTemplate = function (strs): IFragmentCgNode {
   const children: Array<FragmentChild> = [];
 
   if (isTemplateStringsArray(strs)) {
@@ -46,12 +46,6 @@ template.var = () => {
     varId: 'var' + ++varCount,
     recyclable: false,
   };
-};
-
-template.let = () => {
-  const node = template.var();
-  node.recyclable = true;
-  return node;
 };
 
 function isTemplateStringsArray(value: unknown): value is TemplateStringsArray {

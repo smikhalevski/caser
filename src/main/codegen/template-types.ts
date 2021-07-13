@@ -1,4 +1,4 @@
-import {FragmentChild, IFragmentCgNode, IVarAssignmentCgNode, IVarRefCgNode} from './cg-ast-types';
+import {FragmentChild, IFragmentCgNode, IVarAssignmentCgNode, IVarRefCgNode} from './ast-types';
 
 /**
  * Child that can be processed by the codegen tag.
@@ -8,7 +8,7 @@ export type CgTemplateChild = Array<FragmentChild> | FragmentChild | number | bo
 /**
  * The template string tag that produces the codegen nodes.
  */
-export interface CgTemplate {
+export interface ICgTemplate {
 
   /**
    * Creates a new fragment.
@@ -32,12 +32,7 @@ export interface CgTemplate {
   assignment(varRef: IVarRefCgNode, value: CgTemplateChild, retained?: boolean): IVarAssignmentCgNode;
 
   /**
-   * Returns the new non-recyclable variable reference. Use it as a global variable in source code.
+   * Returns the new variable reference.
    */
   var(): IVarRefCgNode;
-
-  /**
-   * Returns the new recyclable variable reference. Use it as a block scoped variable in source code.
-   */
-  let(): IVarRefCgNode;
 }

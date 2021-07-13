@@ -1,4 +1,4 @@
-import {CgNodeType, FragmentChild, IVarRefCgNode} from './cg-ast-types';
+import {CgNodeType, FragmentChild, IFragmentCgNode, IVarRefCgNode} from './ast-types';
 
 export const enum WalkDirection {
   BACKWARDS = -1,
@@ -18,7 +18,7 @@ export function walkFragmentChildren(children: Array<FragmentChild>, index: numb
     const child = children[i];
     if (
         walker(child, i, children) === false
-        || child !== null && typeof child === 'object'
+        || typeof child === 'object'
         && (child.nodeType === CgNodeType.VAR_ASSIGNMENT || child.nodeType === CgNodeType.FRAGMENT)
         && !walkFragmentChildren(child.children, direction === WalkDirection.FORWARDS ? 0 : child.children.length - 1, direction, walker)
     ) {
@@ -44,9 +44,11 @@ export function countVarRefs(children: Array<FragmentChild>, index: number, varI
 /**
  * - Inlines var assignments that aren't retained and used only once;
  * - Removes var assignments that aren't retained and aren't used.
+ *
+ * **Note:** This method mutates node and its descendants.
  */
-export function inlineVarAssignments(children: Array<FragmentChild>): void {
-  walkFragmentChildren(children, children.length - 1, WalkDirection.BACKWARDS, (child, index, children) => {
+export function inlineVarAssignments(node: IFragmentCgNode): void {
+  walkFragmentChildren(node.children, node.children.length - 1, WalkDirection.BACKWARDS, (child, index, children) => {
     if (typeof child !== 'object' || child.nodeType !== CgNodeType.VAR_ASSIGNMENT || child.retained) {
       return;
     }
