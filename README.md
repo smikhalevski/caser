@@ -8,6 +8,8 @@ npm install --save-prod @smikhalevski/codegen
 
 # Usage
 
+⚠️ [API documentation is available here.](https://smikhalevski.github.io/codegen/)
+
 ```ts
 import {template as _, compileJsSource} from '@smikhalevski/codegen';
 
