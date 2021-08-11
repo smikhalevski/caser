@@ -26,13 +26,7 @@ const functionBlock = _.block`function makeKebab(${valueVar}){${[
 ]}}`;
 
 compileJsSource(functionBlock);
-// → 'function makeKebab(a){'
-// + 'let b="";'
-// + 'for(let c=0;c<a.length;c++){'
-// + 'b+="-"+a.charAt(c);'
-// + '}'
-// + 'return b'
-// + '}'
+// → 'function makeKebab(a){let b="";for(let c=0;c<a.length;c++){b+="-"+a.charAt(c);}return b}'
 ```
 
 Codegen can optimize code by inlining assignments and eliminating redundant variable declarations.
