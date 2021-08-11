@@ -1,5 +1,5 @@
 import {CgNodeType, FragmentChild, IFragmentCgNode} from './ast-types';
-import {ICgTemplate, CgTemplateChild} from './template-types';
+import {CgTemplateChild, ICgTemplate} from './template-types';
 
 export const template: ICgTemplate = function (strs): IFragmentCgNode {
   const children: Array<FragmentChild> = [];

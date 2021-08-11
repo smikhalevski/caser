@@ -1,19 +1,34 @@
+const {floor, abs} = Math;
+
+const TOTAL_LETTERS = 52;
+
 /**
+ * Encodes an integer part of number as a string of ASCII alpha characters `[a-zA-Z]`.
  *
- * @param index
+ * ```ts
+ * encodeLetters(100); // → 'aW'
+ * ```
+ *
+ * @param value The number to encode.
  */
-export function encodeLetters(index: number): string {
+export function encodeLetters(value: number): string {
   let str = '';
 
-  index = Math.abs(index);
+  value = floor(abs(value));
+
   do {
-    let charCode = index % 52;
-    charCode = charCode >= 26 ? 65 /*A*/ - 26 + charCode : 97 /*a*/ + charCode;
+    let charCode = value % TOTAL_LETTERS;
+
+    if (charCode >= TOTAL_LETTERS / 2) {
+      charCode = 65 /*A*/ - TOTAL_LETTERS / 2 + charCode;
+    } else {
+      charCode = 97 /*a*/ + charCode;
+    }
 
     str = String.fromCharCode(charCode) + str;
-    index = Math.floor(index / 52);
+    value = floor(value / TOTAL_LETTERS);
 
-  } while (index-- !== 0);
+  } while (value-- !== 0);
 
   return str;
 }

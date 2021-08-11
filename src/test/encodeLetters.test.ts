@@ -16,4 +16,8 @@ describe('encodeLetters', () => {
   test('ignores sign', () => {
     expect(encodeLetters(-100)).toBe('aW');
   });
+
+  test('encodes floating numbers', () => {
+    expect(encodeLetters(10.7)).toBe('k');
+  });
 });

@@ -1,4 +1,4 @@
-import {Maybe} from '../utility-types';
+import {Maybe} from '../misc';
 
 const reLf = /\n/g;
 

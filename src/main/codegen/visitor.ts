@@ -1,10 +1,10 @@
 import {CgNode, CgNodeType, FragmentChild, IFragmentCgNode, IVarAssignmentCgNode, IVarRefCgNode} from './ast-types';
 
 export interface ICgNodeVisitor {
-  fragment?: (node: IFragmentCgNode, next: () => void) => void;
-  varAssignment?: (node: IVarAssignmentCgNode, next: () => void) => void;
-  varRef?: (node: IVarRefCgNode) => void;
-  literal?: (value: string | number | boolean) => void;
+  fragment?(node: IFragmentCgNode, next: () => void): void;
+  varAssignment?(node: IVarAssignmentCgNode, next: () => void): void;
+  varRef?(node: IVarRefCgNode): void;
+  literal?(value: string | number | boolean): void;
 }
 
 /**

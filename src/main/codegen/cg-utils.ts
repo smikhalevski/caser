@@ -6,7 +6,7 @@ import {template} from './template';
  * Returns the list of {@link IVarRefCgNode} that were used in the fragment.
  *
  * @param node The fragment to traverse.
- * @param excludedVarRefs The list of var refs that must be excluded to the result.
+ * @param excludedVarRefs The list of var refs that must be excluded from the output.
  */
 export function collectVarRefs(node: IFragmentCgNode, excludedVarRefs?: Array<IVarRefCgNode>): Array<IVarRefCgNode> {
   const varRefMap: Record<string, IVarRefCgNode> = Object.create(null);

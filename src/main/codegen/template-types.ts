@@ -16,8 +16,8 @@ export interface ICgTemplate {
   (strs: TemplateStringsArray | CgTemplateChild, ...params: Array<CgTemplateChild>): IFragmentCgNode;
 
   /**
-   * Creates a new retained fragment. It creates a scope in which {@link IVarAssignmentCgNode} would to be inlined
-   * during optimization. Usually this should be used to markup code blocks in the source.
+   * Creates a new retained fragment. It creates a scope in which {@link IVarAssignmentCgNode} would be inlined during
+   * optimization. Usually this should be used to markup code blocks in the source.
    */
   block(strs: TemplateStringsArray | CgTemplateChild, ...params: Array<CgTemplateChild>): IFragmentCgNode;
 
