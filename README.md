@@ -1,4 +1,4 @@
-# codegen
+# codegen [![build](https://github.com/smikhalevski/codegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
 
 Language-agnostic codegen utils.
 
