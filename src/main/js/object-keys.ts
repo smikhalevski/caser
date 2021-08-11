@@ -25,7 +25,7 @@ export function isArrayIndex(str: string): boolean {
 /**
  * Wraps given property key with quotes if needed so it can be used as a property name in an object declaration.
  *
- * @example
+ * ```ts
  * compilePropertyName('foo bar'); // → '"foo bar"'
  *
  * compilePropertyName('fooBar'); // → 'fooBar'
@@ -33,6 +33,7 @@ export function isArrayIndex(str: string): boolean {
  * compilePropertyName('0'); // → '0'
  *
  * compilePropertyName('0123'); // → '"0123"'
+ * ```
  */
 export function compilePropertyName(str: string): string {
   return isIdentifier(str) || isArrayIndex(str) ? str : JSON.stringify(str);
@@ -41,13 +42,14 @@ export function compilePropertyName(str: string): string {
 /**
  * Returns a getter of the property.
  *
- * @param key The key of the property.
- * @param optional If `true` then optional chaining syntax is used.
- *
- * @example
+ * ```ts
  * compilePropertyAccessor('foo'); // → .foo
  *
  * compilePropertyAccessor('foo bar', true); // → ?.["foo bar"]
+ * ```
+ *
+ * @param key The key of the property.
+ * @param optional If `true` then optional chaining syntax is used.
  */
 export function compilePropertyAccessor(key: string, optional = false): string {
   if (isIdentifier(key)) {
