@@ -2,9 +2,9 @@
  * The type of a codegen node.
  */
 export const enum CgNodeType {
-  VAR_ASSIGNMENT = 'VAR_ASSIGNMENT',
-  VAR_REF = 'VAR_REF',
-  FRAGMENT = 'FRAGMENT',
+  VAR_ASSIGNMENT,
+  VAR_REF,
+  FRAGMENT,
 }
 
 /**

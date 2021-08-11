@@ -155,7 +155,7 @@ describe('inlineVarAssignments', () => {
       '',
       '',
       {
-        nodeType: 'VAR_ASSIGNMENT',
+        nodeType: CgNodeType.VAR_ASSIGNMENT,
         retained: false,
         varId: varRef2.varId,
         children: ['BBB', '', 'AAA', 'CCC'],
@@ -186,14 +186,14 @@ describe('inlineVarAssignments', () => {
     expect(block.children).toEqual([
       '',
       {
-        nodeType: 'VAR_ASSIGNMENT',
+        nodeType: CgNodeType.VAR_ASSIGNMENT,
         retained: true,
         varId: varRef.varId,
         children: ['AAA'],
       },
       '',
       {
-        nodeType: 'VAR_REF',
+        nodeType: CgNodeType.VAR_REF,
         recyclable: false,
         varId: varRef.varId,
       },
@@ -210,7 +210,7 @@ describe('inlineVarAssignments', () => {
     expect(block.children).toEqual([
       '',
       {
-        nodeType: 'VAR_ASSIGNMENT',
+        nodeType: CgNodeType.VAR_ASSIGNMENT,
         retained: true,
         varId: varRef.varId,
         children: ['AAA'],
