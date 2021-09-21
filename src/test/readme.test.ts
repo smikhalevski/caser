@@ -9,6 +9,7 @@ describe('readme', () => {
     const valueVar = _.var();
 
     const functionBlock = _.block`function makeKebab(${valueVar}){${[
+      _`let ${kebabVar};`,
       _.assignment(kebabVar, _`""`),
       _`for(let ${indexVar}=0;${indexVar}<${valueVar}.length;${indexVar}++){`,
       _`${kebabVar}+="-"+${valueVar}.charAt(${indexVar});`,
@@ -18,7 +19,8 @@ describe('readme', () => {
 
     expect(compileJsSource(functionBlock)).toBe(
         'function makeKebab(a){'
-        + 'let b="";'
+        + 'let b;'
+        + 'b="";'
         + 'for(let c=0;c<a.length;c++){'
         + 'b+="-"+a.charAt(c);'
         + '}'

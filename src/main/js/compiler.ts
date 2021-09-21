@@ -16,7 +16,8 @@ export function compileJsSource(node: IFragmentCgNode, varNameProvider = createV
       next();
     },
     varAssignment(node, next) {
-      src += `let ${varMap[node.varId] ||= varNameProvider.next()}=`;
+      const varName = varMap[node.varId] ||= varNameProvider.next();
+      src += varName + '=';
       next();
       src += ';';
     },
