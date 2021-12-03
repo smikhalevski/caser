@@ -9,10 +9,10 @@ describe('compileDocComment', () => {
   });
 
   test('returns a doc comment', () => {
-    expect(compileDocComment('Okay')).toBe('/**\n * Okay\n */');
+    expect(compileDocComment('Okay')).toBe('/**\n * Okay\n */\n');
   });
 
   test('returns a multiline doc comment', () => {
-    expect(compileDocComment('Okay\nYay')).toBe('/**\n * Okay\n * Yay\n */');
+    expect(compileDocComment('Okay\nYay')).toBe('/**\n * Okay\n * Yay\n */\n');
   });
 });
