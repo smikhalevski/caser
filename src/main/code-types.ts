@@ -3,7 +3,7 @@
  */
 export type Var = symbol;
 
-export enum CodeType {
+export const enum CodeType {
   VAR_DECLARE,
   VAR_ASSIGN,
 }

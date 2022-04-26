@@ -10,9 +10,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "tsc && npm run rollup && npm run terser",
-    "rollup": "rollup --exports named --input ./lib/index.js --file ./lib/index-cjs.js --format cjs --plugin @rollup/plugin-node-resolve",
-    "terser": "terser --compress --mangle toplevel --output ./lib/index-cjs.js -- ./lib/index-cjs.js",
+    "build": "tsc && rollup --exports named --input ./lib/index.js --file ./lib/index-cjs.js --format cjs --plugin @rollup/plugin-node-resolve",
     "clean": "rm -rf ./lib ./docs",
     "test": "jest --detectOpenHandles",
     "docs": "typedoc ./src/main/index.ts",
