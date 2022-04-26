@@ -8,20 +8,20 @@ import {createVarRenamer} from './createVarRenamer';
  * Compiles a function from the given code.
  *
  * ```ts
- * const myArg = createVar();
- * const myVar = createVar();
- * const myBoundVar = createVar();
+ * const arg = Symbol();
+ * const varA = Symbol();
+ * const varB = Symbol();
  *
- * const myFn = compileFunction(
- *     [myArg],
+ * const fn = compileFunction(
+ *     [arg],
  *     [
- *       'var ', myVar, '= 123;',
- *       'return ', myVar, '+', myArg, '+', myBoundVar,
+ *       'var ', varA, '=123;',
+ *       'return ', varA, '+', arg, '+', varB,
  *     ],
- *     [[myBoundVar, 456]],
+ *     [[varB, 456]],
  * );
  *
- * myFn(789); // → 1368
+ * fn(789); // → 1368
  * ```
  *
  * @param argVars The list of function arguments.

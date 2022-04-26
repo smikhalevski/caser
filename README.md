@@ -1,30 +1,155 @@
-# LeCodeDegen [![build](https://github.com/smikhalevski/codedegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
+<p align="center">
+  <img src="meme.svg" width="200" alt="Feel Like A Sir">
+</p>
 
-Fast and simple JS/TS codegen.
+# codedegen [![build](https://github.com/smikhalevski/codegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
+
+[1 kB](https://bundlephobia.com/result?p=codedegen) of fast and simple JS/TS codegen decadence.
 
 ```shell
 npm install --save-prod codedegen
 ```
 
-# Usage
+# Overview
 
-⚠️ [API documentation is available here.](https://smikhalevski.github.io/codedegen/)
+🤖️ [API documentation is available here.](https://smikhalevski.github.io/codedegen/)
+
+Symbols in code template represent variables:
+
+```ts
+import {assembleJs} from 'codedegen';
+
+const varA = Symbol();
+const varB = Symbol();
+
+assembleJs([
+  'if(', varA, '!==0) {return ', varA, '*', varB, '}'
+]);
+// → if(a!==0) {return a*b}
+```
+
+## Compiling a function
+
+You can compile a function directly from the code template:
 
 ```ts
 import {compileFunction} from 'codedegen';
 
-const myArg = Symbol();
-const myVar = Symbol();
-const myBoundVar = Symbol();
+const arg = Symbol();
+const varA = Symbol();
+const varB = Symbol();
 
-const myFn = compileFunction(
-    [myArg],
+const fn = compileFunction(
+
+    // The list of function arguments
+    [arg],
+
+    // The function body
     [
-      'var ', myVar, '= 123;',
-      'return ', myVar, '+', myArg, '+', myBoundVar,
+      'var ', varA, '=123;',
+      'return ', varA, '+', arg, '+', varB, '.fooBar',
     ],
-    [[myBoundVar, 456]],
+
+    // The optional list of variable bindings
+    [[varB, {fooBar: 456}]],
 );
 
-myFn(789); // → 1368
+fn(789); // → 1368
+```
+
+## Naming variables
+
+If you want a specific variable to have a specific name, you can pass a `VarRenamer` to `assembleJs`:
+
+```ts
+import {assembleJs, createVarRenamer} from 'codedegen';
+
+const varA = Symbol();
+const varB = Symbol();
+
+const varRenamer = createVarRenamer([[varA, 'yay']]);
+
+assembleJs([varA, '===', varB], varRenamer);
+// → yay===a
+```
+
+`VarRenamer` instance always return the same name for the same variable:
+
+```ts
+varRenamer(varA); // → yay
+```
+
+# DSL
+
+To ease the codegen there's a set of DSL functions which you can use anywhere in your templates.
+
+### `propAccess`
+
+Returns a prop accessor code:
+
+```ts
+propAccess('obj', 'foo'); // → obj.foo
+
+propAccess('obj', 9); // → obj[9]
+
+propAccess('obj', 'foo bar', true); // → obj?.["foo bar"]
+```
+
+You can generate a nested property access code like this:
+
+```ts
+import {assembleJs, propAcccess} from 'codedegen';
+
+const varA = Symbol();
+const varB = Symbol();
+
+assembleJs([
+  varA, '=', propAcccess(propAccess(varB, 'fooBar', true), 10)
+]);
+// → a=b?.fooBar[10]
+```
+
+### `objectKey`
+
+Returns the code of an object key:
+
+```ts
+objectKey('foo bar'); // → '"foo bar"'
+
+objectKey('fooBar'); // → 'fooBar'
+
+objectKey('0'); // → '0'
+
+objectKey('0123'); // → '"0123"'
+```
+
+For example, to create an object you can:
+
+```ts
+import {assembleJs, Code, objectKey} from 'codedegen';
+
+assembleJs([
+  '{',
+  objectKey('fooBar'), ':123,',
+  objectKey('Yes Sir!'), ':456,',
+  '}',
+]);
+// → {fooBar:123,"Yes Sir!":456,}
+```
+
+### `comment` and `docComment`
+
+Return a code of a comment block:
+
+```ts
+import {assembleJs} from 'codedegen';
+
+assembleJs(
+    docComment('Yes Sir,\nI Can Boogie')
+);
+// →
+// /**
+//  * Yes Sir,
+//  * I Can Boogie
+//  */
 ```
