@@ -2,7 +2,7 @@
   <img src="meme.svg" width="200" alt="Feel Like A Sir">
 </p>
 
-# codedegen [![build](https://github.com/smikhalevski/codegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
+# codedegen [![build](https://github.com/smikhalevski/codedegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
 
 [1 kB](https://bundlephobia.com/result?p=codedegen) of fast and simple JS/TS codegen decadence.
 
