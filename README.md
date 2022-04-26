@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="meme.svg" width="200" alt="Feel Like A Sir">
+  <img src="https://github.com/smikhalevski/codegen/raw/master/meme.svg" width="200" alt="Feel Like A Sir">
 </p>
 
 # codedegen [![build](https://github.com/smikhalevski/codedegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
