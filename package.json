@@ -1,7 +1,7 @@
 {
-  "name": "@smikhalevski/codegen",
-  "version": "2.0.1",
-  "description": "Language-agnostic codegen utils.",
+  "name": "codedegen",
+  "version": "1.0.0",
+  "description": "Fast and simple JS/TS codegen.",
   "main": "./lib/index-cjs.js",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -10,9 +10,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "tsc && npm run rollup && npm run terser",
-    "rollup": "rollup --exports named --input ./lib/index.js --file ./lib/index-cjs.js --format cjs --plugin @rollup/plugin-node-resolve",
-    "terser": "terser --compress --mangle toplevel --output ./lib/index-cjs.js -- ./lib/index-cjs.js",
+    "build": "tsc && rollup --exports named --input ./lib/index.js --file ./lib/index-cjs.js --format cjs --plugin @rollup/plugin-node-resolve",
     "clean": "rm -rf ./lib ./docs",
     "test": "jest --detectOpenHandles",
     "docs": "typedoc ./src/main/index.ts",
@@ -21,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/smikhalevski/codegen.git"
+    "url": "git+https://github.com/smikhalevski/codedegen.git"
   },
   "author": "Savva Mikhalevski <smikhalevski@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/smikhalevski/codegen/issues"
+    "url": "https://github.com/smikhalevski/codedegen/issues"
   },
-  "homepage": "https://github.com/smikhalevski/codegen#readme",
+  "homepage": "https://github.com/smikhalevski/codedegen#readme",
   "jest": {
     "preset": "ts-jest",
     "globals": {
@@ -42,13 +40,13 @@
     }
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "@types/jest": "^26.0.23",
-    "jest": "^27.0.2",
-    "rollup": "^2.50.5",
-    "terser": "^5.7.0",
-    "ts-jest": "^27.0.2",
-    "typedoc": "^0.21.5",
-    "typescript": "^4.3.2"
+    "@rollup/plugin-node-resolve": "^13.2.1",
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "rollup": "^2.70.2",
+    "terser": "^5.12.1",
+    "ts-jest": "^27.1.4",
+    "typedoc": "^0.22.15",
+    "typescript": "^4.6.3"
   }
 }
