@@ -1,226 +1,83 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@smikhalevski/codegen</title>
-	<meta name="description" content="Documentation for @smikhalevski/codegen">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">@smikhalevski/codegen</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>@smikhalevski/codegen</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#codegen-" id="codegen-" style="color: inherit; text-decoration: none;">
-					<h1>codegen <a href="https://github.com/smikhalevski/codegen/actions/workflows/master.yml"><img src="https://github.com/smikhalevski/codegen/actions/workflows/master.yml/badge.svg?branch=master&event=push" alt="build"></a></h1>
-				</a>
-				<p>Language-agnostic codegen utils.</p>
-				<pre><code class="language-shell"><span style="color: #000000">npm install --save-prod @smikhalevski/codegen</span>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>codedegen</title><meta name="description" content="Documentation for codedegen"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">codedegen</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>codedegen </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p align="center">
+  <img src="https://github.com/smikhalevski/codegen/raw/master/meme.svg" width="200" alt="Feel Like A Sir">
+</p>
+
+
+<a href="#codedegen-" id="codedegen-" style="color: inherit; text-decoration: none;">
+  <h1>codedegen <a href="https://github.com/smikhalevski/codegen/actions/workflows/master.yml"><img src="https://github.com/smikhalevski/codedegen/actions/workflows/master.yml/badge.svg?branch=master&event=push" alt="build"></a></h1>
+</a>
+<p><a href="https://bundlephobia.com/result?p=codedegen">1 kB</a> of fast and simple JS/TS codegen decadence.</p>
+<pre><code class="language-shell"><span class="hl-1">npm install --save-prod codedegen</span>
 </code></pre>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h1>Usage</h1>
-				</a>
-				<p>⚠️ <a href="https://smikhalevski.github.io/codegen/">API documentation is available here.</a></p>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">template</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">_</span><span style="color: #000000">, </span><span style="color: #001080">compileJsSource</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@smikhalevski/codegen&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">kebabVar</span><span style="color: #000000"> = </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">var</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">indexVar</span><span style="color: #000000"> = </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">var</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">valueVar</span><span style="color: #000000"> = </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">var</span><span style="color: #000000">();</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">functionBlock</span><span style="color: #000000"> = </span><span style="color: #001080">_</span><span style="color: #A31515">.</span><span style="color: #795E26">block</span><span style="color: #A31515">`function makeKebab(</span><span style="color: #0000FF">${</span><span style="color: #001080">valueVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">){</span><span style="color: #0000FF">${</span><span style="color: #000000FF">[</span>
-<span style="color: #000000FF">  </span><span style="color: #001080">_</span><span style="color: #000000FF">.</span><span style="color: #795E26">assignment</span><span style="color: #000000FF">(</span><span style="color: #001080">kebabVar</span><span style="color: #000000FF">, </span><span style="color: #795E26">_</span><span style="color: #A31515">`&quot;&quot;`</span><span style="color: #000000FF">),</span>
-
-<span style="color: #000000FF">  </span><span style="color: #795E26">_</span><span style="color: #A31515">`for(let </span><span style="color: #0000FF">${</span><span style="color: #001080">indexVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">=0;</span><span style="color: #0000FF">${</span><span style="color: #001080">indexVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">&lt;</span><span style="color: #0000FF">${</span><span style="color: #001080">valueVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">.length;</span><span style="color: #0000FF">${</span><span style="color: #001080">indexVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">++){`</span><span style="color: #000000FF">,</span>
-<span style="color: #000000FF">  </span><span style="color: #795E26">_</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">kebabVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">+=&quot;-&quot;+</span><span style="color: #0000FF">${</span><span style="color: #001080">valueVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">.charAt(</span><span style="color: #0000FF">${</span><span style="color: #001080">indexVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">);`</span><span style="color: #000000FF">,</span>
-<span style="color: #000000FF">  </span><span style="color: #795E26">_</span><span style="color: #A31515">`}`</span><span style="color: #000000FF">,</span>
-
-<span style="color: #000000FF">  </span><span style="color: #795E26">_</span><span style="color: #A31515">`return </span><span style="color: #0000FF">${</span><span style="color: #001080">kebabVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000FF">,</span>
-<span style="color: #000000FF">]</span><span style="color: #0000FF">}</span><span style="color: #A31515">}`</span><span style="color: #000000">;</span>
-
-<span style="color: #795E26">compileJsSource</span><span style="color: #000000">(</span><span style="color: #001080">functionBlock</span><span style="color: #000000">);</span>
-<span style="color: #008000">// → &#039;function makeKebab(a){let b=&quot;&quot;;for(let c=0;c&lt;a.length;c++){b+=&quot;-&quot;+a.charAt(c);}return b}&#039;</span>
+<a href="#overview" id="overview" style="color: inherit; text-decoration: none;">
+  <h1>Overview</h1>
+</a>
+<p>🤖️ <a href="https://smikhalevski.github.io/codedegen/">API documentation is available here.</a></p>
+<p>Symbols in code template represent variables:</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-1"> {</span><span class="hl-5">assembleJs</span><span class="hl-1">} </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-6">&#39;codedegen&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varA</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varB</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><br/><span class="hl-4">assembleJs</span><span class="hl-1">([</span><br/><span class="hl-1">  </span><span class="hl-6">&#39;if(&#39;</span><span class="hl-1">, </span><span class="hl-5">varA</span><span class="hl-1">, </span><span class="hl-6">&#39;!==0) {return &#39;</span><span class="hl-1">, </span><span class="hl-5">varA</span><span class="hl-1">, </span><span class="hl-6">&#39;*&#39;</span><span class="hl-1">, </span><span class="hl-5">varB</span><span class="hl-1">, </span><span class="hl-6">&#39;}&#39;</span><br/><span class="hl-1">]);</span><br/><span class="hl-8">// → if(a!==0) {return a*b}</span>
 </code></pre>
-				<p>Codegen can optimize code by inlining assignments and eliminating redundant variable declarations.</p>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">template</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">_</span><span style="color: #000000">, </span><span style="color: #001080">compileJsSource</span><span style="color: #000000">, </span><span style="color: #001080">inlineVarAssignments</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@smikhalevski/codegen&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">aVar</span><span style="color: #000000"> = </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">var</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">bVar</span><span style="color: #000000"> = </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">var</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">cVar</span><span style="color: #000000"> = </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">var</span><span style="color: #000000">();</span>
-
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">block</span><span style="color: #000000"> = </span><span style="color: #795E26">_</span><span style="color: #000000">(</span>
-<span style="color: #000000">    </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">assignment</span><span style="color: #000000">(</span><span style="color: #001080">aVar</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">),</span>
-<span style="color: #000000">    </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">assignment</span><span style="color: #000000">(</span><span style="color: #001080">bVar</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">),</span>
-<span style="color: #000000">    </span><span style="color: #001080">_</span><span style="color: #000000">.</span><span style="color: #795E26">assignment</span><span style="color: #000000">(</span><span style="color: #001080">cVar</span><span style="color: #000000">, </span><span style="color: #795E26">_</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">aVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">+</span><span style="color: #0000FF">${</span><span style="color: #001080">bVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">),</span>
-
-<span style="color: #000000">    </span><span style="color: #795E26">_</span><span style="color: #A31515">`console.log(</span><span style="color: #0000FF">${</span><span style="color: #001080">cVar</span><span style="color: #0000FF">}</span><span style="color: #A31515">)`</span><span style="color: #000000">,</span>
-<span style="color: #000000">);</span>
-
-<span style="color: #008000">// This operation mutates block</span>
-<span style="color: #795E26">inlineVarAssignments</span><span style="color: #000000">(</span><span style="color: #001080">block</span><span style="color: #000000">);</span>
-
-<span style="color: #795E26">compileJsSource</span><span style="color: #000000">(</span><span style="color: #001080">block</span><span style="color: #000000">);</span>
-<span style="color: #008000">// → &#039;console.log(3+2)&#039;</span>
+<a href="#compiling-a-function" id="compiling-a-function" style="color: inherit; text-decoration: none;">
+  <h2>Compiling a function</h2>
+</a>
+<p>You can compile a function directly from the code template:</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-1"> {</span><span class="hl-5">compileFunction</span><span class="hl-1">} </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-6">&#39;codedegen&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">arg</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varA</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varB</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">fn</span><span class="hl-1"> = </span><span class="hl-4">compileFunction</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-8">// The list of function arguments</span><br/><span class="hl-1">    [</span><span class="hl-5">arg</span><span class="hl-1">],</span><br/><br/><span class="hl-1">    </span><span class="hl-8">// The function body</span><br/><span class="hl-1">    [</span><br/><span class="hl-1">      </span><span class="hl-6">&#39;var &#39;</span><span class="hl-1">, </span><span class="hl-5">varA</span><span class="hl-1">, </span><span class="hl-6">&#39;=123;&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&#39;return &#39;</span><span class="hl-1">, </span><span class="hl-5">varA</span><span class="hl-1">, </span><span class="hl-6">&#39;+&#39;</span><span class="hl-1">, </span><span class="hl-5">arg</span><span class="hl-1">, </span><span class="hl-6">&#39;+&#39;</span><span class="hl-1">, </span><span class="hl-5">varB</span><span class="hl-1">, </span><span class="hl-6">&#39;.fooBar&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    ],</span><br/><br/><span class="hl-1">    </span><span class="hl-8">// The optional list of variable bindings</span><br/><span class="hl-1">    [[</span><span class="hl-5">varB</span><span class="hl-1">, {</span><span class="hl-5">fooBar:</span><span class="hl-1"> </span><span class="hl-7">456</span><span class="hl-1">}]],</span><br/><span class="hl-1">);</span><br/><br/><span class="hl-4">fn</span><span class="hl-1">(</span><span class="hl-7">789</span><span class="hl-1">); </span><span class="hl-8">// → 1368</span>
 </code></pre>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="modules/template.html">template</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="enums/CgNodeType.html" class="tsd-kind-icon">Cg<wbr>Node<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/WalkDirection.html" class="tsd-kind-icon">Walk<wbr>Direction</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ICgNodeVisitor.html" class="tsd-kind-icon">ICg<wbr>Node<wbr>Visitor</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ICgTemplate.html" class="tsd-kind-icon">ICg<wbr>Template</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/IFragmentCgNode.html" class="tsd-kind-icon">IFragment<wbr>CgNode</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/IVarAssignmentCgNode.html" class="tsd-kind-icon">IVar<wbr>Assignment<wbr>CgNode</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/IVarNameProvider.html" class="tsd-kind-icon">IVar<wbr>Name<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/IVarRefCgNode.html" class="tsd-kind-icon">IVar<wbr>Ref<wbr>CgNode</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#CgNode" class="tsd-kind-icon">Cg<wbr>Node</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#CgTemplateChild" class="tsd-kind-icon">Cg<wbr>Template<wbr>Child</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#FragmentChild" class="tsd-kind-icon">Fragment<wbr>Child</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#template" class="tsd-kind-icon">template</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#collectVarRefs" class="tsd-kind-icon">collect<wbr>Var<wbr>Refs</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#compileDocComment" class="tsd-kind-icon">compile<wbr>Doc<wbr>Comment</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#compileJsSource" class="tsd-kind-icon">compile<wbr>JsSource</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#compilePropertyAccessor" class="tsd-kind-icon">compile<wbr>Property<wbr>Accessor</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#compilePropertyName" class="tsd-kind-icon">compile<wbr>Property<wbr>Name</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#countVarRefs" class="tsd-kind-icon">count<wbr>Var<wbr>Refs</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#createVarNameProvider" class="tsd-kind-icon">create<wbr>Var<wbr>Name<wbr>Provider</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#encodeLetters" class="tsd-kind-icon">encode<wbr>Letters</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#inlineVarAssignments" class="tsd-kind-icon">inline<wbr>Var<wbr>Assignments</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isArrayIndex" class="tsd-kind-icon">is<wbr>Array<wbr>Index</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isIdentifier" class="tsd-kind-icon">is<wbr>Identifier</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#joinFragmentChildren" class="tsd-kind-icon">join<wbr>Fragment<wbr>Children</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#visitCgNode" class="tsd-kind-icon">visit<wbr>CgNode</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#walkFragmentChildren" class="tsd-kind-icon">walk<wbr>Fragment<wbr>Children</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+
+<a href="#naming-variables" id="naming-variables" style="color: inherit; text-decoration: none;">
+  <h2>Naming variables</h2>
+</a>
+<p>If you want a specific variable to have a specific name, you can pass a <code>VarRenamer</code> to <code>assembleJs</code>:</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-1"> {</span><span class="hl-5">assembleJs</span><span class="hl-1">, </span><span class="hl-5">createVarRenamer</span><span class="hl-1">} </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-6">&#39;codedegen&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varA</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varB</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varRenamer</span><span class="hl-1"> = </span><span class="hl-4">createVarRenamer</span><span class="hl-1">([[</span><span class="hl-5">varA</span><span class="hl-1">, </span><span class="hl-6">&#39;yay&#39;</span><span class="hl-1">]]);</span><br/><br/><span class="hl-4">assembleJs</span><span class="hl-1">([</span><span class="hl-5">varA</span><span class="hl-1">, </span><span class="hl-6">&#39;===&#39;</span><span class="hl-1">, </span><span class="hl-5">varB</span><span class="hl-1">], </span><span class="hl-5">varRenamer</span><span class="hl-1">);</span><br/><span class="hl-8">// → yay===a</span>
+</code></pre>
+<p><code>VarRenamer</code> instance always return the same name for the same variable:</p>
+<pre><code class="language-ts"><span class="hl-4">varRenamer</span><span class="hl-1">(</span><span class="hl-5">varA</span><span class="hl-1">); </span><span class="hl-8">// → yay</span>
+</code></pre>
+
+<a href="#dsl" id="dsl" style="color: inherit; text-decoration: none;">
+  <h1>DSL</h1>
+</a>
+<p>To ease the codegen there&#39;s a set of DSL functions which you can use anywhere in your templates.</p>
+
+<a href="#propaccess" id="propaccess" style="color: inherit; text-decoration: none;">
+  <h3><code>propAccess</code></h3>
+</a>
+<p>Returns a prop accessor code:</p>
+<pre><code class="language-ts"><span class="hl-4">propAccess</span><span class="hl-1">(</span><span class="hl-6">&#39;obj&#39;</span><span class="hl-1">, </span><span class="hl-6">&#39;foo&#39;</span><span class="hl-1">); </span><span class="hl-8">// → obj.foo</span><br/><br/><span class="hl-4">propAccess</span><span class="hl-1">(</span><span class="hl-6">&#39;obj&#39;</span><span class="hl-1">, </span><span class="hl-7">9</span><span class="hl-1">); </span><span class="hl-8">// → obj[9]</span><br/><br/><span class="hl-4">propAccess</span><span class="hl-1">(</span><span class="hl-6">&#39;obj&#39;</span><span class="hl-1">, </span><span class="hl-6">&#39;foo bar&#39;</span><span class="hl-1">, </span><span class="hl-0">true</span><span class="hl-1">); </span><span class="hl-8">// → obj?.[&quot;foo bar&quot;]</span>
+</code></pre>
+<p>You can generate a nested property access code like this:</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-1"> {</span><span class="hl-5">assembleJs</span><span class="hl-1">, </span><span class="hl-5">propAcccess</span><span class="hl-1">} </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-6">&#39;codedegen&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varA</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varB</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><br/><span class="hl-4">assembleJs</span><span class="hl-1">([</span><br/><span class="hl-1">  </span><span class="hl-5">varA</span><span class="hl-1">, </span><span class="hl-6">&#39;=&#39;</span><span class="hl-1">, </span><span class="hl-4">propAcccess</span><span class="hl-1">(</span><span class="hl-4">propAccess</span><span class="hl-1">(</span><span class="hl-5">varB</span><span class="hl-1">, </span><span class="hl-6">&#39;fooBar&#39;</span><span class="hl-1">, </span><span class="hl-0">true</span><span class="hl-1">), </span><span class="hl-7">10</span><span class="hl-1">)</span><br/><span class="hl-1">]);</span><br/><span class="hl-8">// → a=b?.fooBar[10]</span>
+</code></pre>
+
+<a href="#objectkey" id="objectkey" style="color: inherit; text-decoration: none;">
+  <h3><code>objectKey</code></h3>
+</a>
+<p>Returns the code of an object key:</p>
+<pre><code class="language-ts"><span class="hl-4">objectKey</span><span class="hl-1">(</span><span class="hl-6">&#39;foo bar&#39;</span><span class="hl-1">); </span><span class="hl-8">// → &#39;&quot;foo bar&quot;&#39;</span><br/><br/><span class="hl-4">objectKey</span><span class="hl-1">(</span><span class="hl-6">&#39;fooBar&#39;</span><span class="hl-1">); </span><span class="hl-8">// → &#39;fooBar&#39;</span><br/><br/><span class="hl-4">objectKey</span><span class="hl-1">(</span><span class="hl-6">&#39;0&#39;</span><span class="hl-1">); </span><span class="hl-8">// → &#39;0&#39;</span><br/><br/><span class="hl-4">objectKey</span><span class="hl-1">(</span><span class="hl-6">&#39;0123&#39;</span><span class="hl-1">); </span><span class="hl-8">// → &#39;&quot;0123&quot;&#39;</span>
+</code></pre>
+<p>For example, to create an object you can:</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-1"> {</span><span class="hl-5">assembleJs</span><span class="hl-1">, </span><span class="hl-5">Code</span><span class="hl-1">, </span><span class="hl-5">objectKey</span><span class="hl-1">} </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-6">&#39;codedegen&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">assembleJs</span><span class="hl-1">([</span><br/><span class="hl-1">  </span><span class="hl-6">&#39;{&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">objectKey</span><span class="hl-1">(</span><span class="hl-6">&#39;fooBar&#39;</span><span class="hl-1">), </span><span class="hl-6">&#39;:123,&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">objectKey</span><span class="hl-1">(</span><span class="hl-6">&#39;Yes Sir!&#39;</span><span class="hl-1">), </span><span class="hl-6">&#39;:456,&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">&#39;}&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">]);</span><br/><span class="hl-8">// → {fooBar:123,&quot;Yes Sir!&quot;:456,}</span>
+</code></pre>
+
+<a href="#comment-and-doccomment" id="comment-and-doccomment" style="color: inherit; text-decoration: none;">
+  <h3><code>comment</code> and <code>docComment</code></h3>
+</a>
+<p>Return a code of a comment block:</p>
+<pre><code class="language-ts"><span class="hl-9">import</span><span class="hl-1"> {</span><span class="hl-5">assembleJs</span><span class="hl-1">} </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-6">&#39;codedegen&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">assembleJs</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-4">docComment</span><span class="hl-1">(</span><span class="hl-6">&#39;Yes Sir,</span><span class="hl-10">\n</span><span class="hl-6">I Can Boogie&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">);</span><br/><span class="hl-8">// →</span><br/><span class="hl-8">// /**</span><br/><span class="hl-8">//  * Yes Sir,</span><br/><span class="hl-8">//  * I Can Boogie</span><br/><span class="hl-8">//  */</span>
+</code></pre>
+
+<a href="#varassign" id="varassign" style="color: inherit; text-decoration: none;">
+  <h3><code>varAssign</code></h3>
+</a>
+<p>Returns a variable assignment code:</p>
+<pre><code class="language-ts"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varA</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varB</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><br/><span class="hl-4">varAssign</span><span class="hl-1">(</span><span class="hl-5">varA</span><span class="hl-1">, [</span><span class="hl-5">varB</span><span class="hl-1">]); </span><span class="hl-8">// → a=b;</span><br/><br/><span class="hl-4">varAssign</span><span class="hl-1">(</span><span class="hl-5">varA</span><span class="hl-1">, [</span><span class="hl-4">propAccess</span><span class="hl-1">(</span><span class="hl-5">varB</span><span class="hl-1">, </span><span class="hl-6">&#39;fooBar&#39;</span><span class="hl-1">), </span><span class="hl-6">&#39;/2&#39;</span><span class="hl-1">]);</span><br/><span class="hl-8">// → a=b.fooBar/2</span>
+</code></pre>
+
+<a href="#vardeclare" id="vardeclare" style="color: inherit; text-decoration: none;">
+  <h3><code>varDeclare</code></h3>
+</a>
+<p>Returns a variable declaration code:</p>
+<pre><code class="language-ts"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">varA</span><span class="hl-1"> = </span><span class="hl-3">Symbol</span><span class="hl-1">();</span><br/><br/><span class="hl-4">varDeclare</span><span class="hl-1">(</span><span class="hl-5">varA</span><span class="hl-1">); </span><span class="hl-8">// → var a;</span><br/><br/><span class="hl-4">varDeclare</span><span class="hl-1">(</span><span class="hl-5">varA</span><span class="hl-1">, [</span><span class="hl-7">123</span><span class="hl-1">]); </span><span class="hl-8">// → var a=123; </span>
+</code></pre>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/CodeType.html" class="tsd-kind-icon">Code<wbr/>Type</a></li><li class="tsd-kind-interface"><a href="interfaces/CodeBindings.html" class="tsd-kind-icon">Code<wbr/>Bindings</a></li><li class="tsd-kind-interface"><a href="interfaces/VarAssign.html" class="tsd-kind-icon">Var<wbr/>Assign</a></li><li class="tsd-kind-interface"><a href="interfaces/VarDeclare.html" class="tsd-kind-icon">Var<wbr/>Declare</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Binding" class="tsd-kind-icon">Binding</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Code" class="tsd-kind-icon">Code</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Var" class="tsd-kind-icon">Var</a></li><li class="tsd-kind-type-alias"><a href="modules.html#VarRenamer" class="tsd-kind-icon">Var<wbr/>Renamer</a></li><li class="tsd-kind-function"><a href="modules.html#assembleJs" class="tsd-kind-icon">assemble<wbr/>Js</a></li><li class="tsd-kind-function"><a href="modules.html#comment" class="tsd-kind-icon">comment</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#compileFunction" class="tsd-kind-icon">compile<wbr/>Function</a></li><li class="tsd-kind-function"><a href="modules.html#createVar" class="tsd-kind-icon">create<wbr/>Var</a></li><li class="tsd-kind-function"><a href="modules.html#createVarRenamer" class="tsd-kind-icon">create<wbr/>Var<wbr/>Renamer</a></li><li class="tsd-kind-function"><a href="modules.html#docComment" class="tsd-kind-icon">doc<wbr/>Comment</a></li><li class="tsd-kind-function"><a href="modules.html#encodeAlpha" class="tsd-kind-icon">encode<wbr/>Alpha</a></li><li class="tsd-kind-function"><a href="modules.html#objectKey" class="tsd-kind-icon">object<wbr/>Key</a></li><li class="tsd-kind-function"><a href="modules.html#propAccess" class="tsd-kind-icon">prop<wbr/>Access</a></li><li class="tsd-kind-function"><a href="modules.html#varAssign" class="tsd-kind-icon">var<wbr/>Assign</a></li><li class="tsd-kind-function"><a href="modules.html#varDeclare" class="tsd-kind-icon">var<wbr/>Declare</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
