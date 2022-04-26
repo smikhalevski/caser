@@ -40,7 +40,6 @@ const varA = Symbol();
 const varB = Symbol();
 
 const fn = compileFunction(
-
     // The list of function arguments
     [arg],
 
@@ -152,4 +151,30 @@ assembleJs(
 //  * Yes Sir,
 //  * I Can Boogie
 //  */
+```
+
+### `varAssign`
+
+Returns a variable assignment code:
+
+```ts
+const varA = Symbol();
+const varB = Symbol();
+
+varAssign(varA, [varB]); // → a=b;
+
+varAssign(varA, [propAccess(varB, 'fooBar'), '/2']);
+// → a=b.fooBar/2
+```
+
+### `varDeclare`
+
+Returns a variable declaration code:
+
+```ts
+const varA = Symbol();
+
+varDeclare(varA); // → var a;
+
+varDeclare(varA, [123]); // → var a=123; 
 ```

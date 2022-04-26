@@ -20,12 +20,12 @@ export function createVar(description?: string | number): Var {
   return Symbol(description);
 }
 
-export function varAssign(v: Var, value: Code, retained = false): Code {
-  return {type: CodeType.VAR_ASSIGN, var: v, children: toArray(value), retained};
+export function varAssign(v: Var, value: Code): Code {
+  return {type: CodeType.VAR_ASSIGN, var: v, children: toArray(value)};
 }
 
-export function varDeclare(v: Var, value: Code = [], retained = false): Code {
-  return {type: CodeType.VAR_DECLARE, var: v, children: toArray(value), retained};
+export function varDeclare(v: Var, value: Code = []): Code {
+  return {type: CodeType.VAR_DECLARE, var: v, children: toArray(value)};
 }
 
 /**

@@ -12,14 +12,12 @@ export interface VarDeclare {
   type: CodeType.VAR_DECLARE;
   var: Var;
   children: Code[];
-  retained: boolean;
 }
 
 export interface VarAssign {
   type: CodeType.VAR_ASSIGN;
   var: Var;
   children: Code[];
-  retained: boolean;
 }
 
 /**
