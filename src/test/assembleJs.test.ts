@@ -1,4 +1,4 @@
-import {assembleJs, createVar, varAssign, varDeclare} from '../../main/code';
+import {assembleJs, createVar, varAssign, varDeclare} from '../main';
 
 describe('assembleJs', () => {
 
@@ -28,5 +28,14 @@ describe('assembleJs', () => {
   test('assembles var assignment', () => {
     expect(assembleJs(varAssign(createVar(), '123'))).toBe('a=123;');
     expect(assembleJs(varAssign(createVar(), undefined))).toBe('a=undefined;');
+  });
+
+  test('readme', () => {
+    const varA = createVar();
+    const varB = createVar();
+
+    expect(assembleJs([
+      'if(', varA, '!==0) {return ', varA, '*', varB, '}'
+    ])).toBe('if(a!==0) {return a*b}');
   });
 });

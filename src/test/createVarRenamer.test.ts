@@ -1,4 +1,4 @@
-import {createVar, createVarRenamer} from '../../main/code';
+import {createVar, createVarRenamer} from '../main';
 
 describe('createVarRenamer', () => {
 

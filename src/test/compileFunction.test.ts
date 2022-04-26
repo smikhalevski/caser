@@ -1,4 +1,4 @@
-import {compileFunction, createVar} from '../../main/code';
+import {compileFunction, createVar} from '../main';
 
 describe('compileFunction', () => {
 
@@ -62,18 +62,21 @@ describe('compileFunction', () => {
     ).toBe(29);
   });
 
-  test('docs', () => {
+  test('readme', () => {
 
-    const myArg = createVar();
-    const myVar = createVar();
-    const myBoundVar = createVar();
+    const arg = Symbol();
+    const varA = Symbol();
+    const varB = Symbol();
 
-    const myFn = compileFunction(
-        [myArg],
-        ['var ', myVar, '= 123;', 'return ', myVar, '+', myArg, '+', myBoundVar,],
-        [[myBoundVar, 456]],
+    const fn = compileFunction(
+        [arg],
+        [
+          'var ', varA, '=123;',
+          'return ', varA, '+', arg, '+', varB, '.fooBar',
+        ],
+        [[varB, {fooBar: 456}]],
     );
 
-    expect(myFn(789)).toBe((1368));
+    expect(fn(789)).toBe((1368));
   });
 });

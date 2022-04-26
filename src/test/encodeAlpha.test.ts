@@ -1,4 +1,4 @@
-import {encodeAlpha} from '../../main/code';
+import {encodeAlpha} from '../main';
 
 describe('encodeAlpha', () => {
 

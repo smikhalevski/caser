@@ -1,4 +1,4 @@
-import {assembleJs, comment, docComment, objectKey, propAccess} from '../../main/code';
+import {assembleJs, comment, docComment, objectKey, propAccess} from '../main';
 
 describe('objectKey', () => {
 
