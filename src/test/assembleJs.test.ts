@@ -1,4 +1,4 @@
-import {assembleJs, createVar, varAssign, varDeclare} from '../main';
+import {assembleJs, varAssign, varDeclare} from '../main';
 
 describe('assembleJs', () => {
 
@@ -10,29 +10,29 @@ describe('assembleJs', () => {
   });
 
   test('assembles variables', () => {
-    const aVar = createVar();
-    const bVar = createVar();
+    const aVar = Symbol();
+    const bVar = Symbol();
 
     expect(assembleJs([aVar, '=', bVar, '+', aVar])).toBe('a=b+a');
   });
 
   test('assembles var declaration', () => {
-    expect(assembleJs(varDeclare(createVar()))).toBe('var a;');
-    expect(assembleJs(varDeclare(createVar(), undefined))).toBe('var a;');
+    expect(assembleJs(varDeclare(Symbol()))).toBe('var a;');
+    expect(assembleJs(varDeclare(Symbol(), undefined))).toBe('var a;');
   });
 
   test('assembles var declaration with initial value', () => {
-    expect(assembleJs(varDeclare(createVar(), '123'))).toBe('var a=123;');
+    expect(assembleJs(varDeclare(Symbol(), '123'))).toBe('var a=123;');
   });
 
   test('assembles var assignment', () => {
-    expect(assembleJs(varAssign(createVar(), '123'))).toBe('a=123;');
-    expect(assembleJs(varAssign(createVar(), undefined))).toBe('a=undefined;');
+    expect(assembleJs(varAssign(Symbol(), '123'))).toBe('a=123;');
+    expect(assembleJs(varAssign(Symbol(), undefined))).toBe('a=undefined;');
   });
 
   test('readme', () => {
-    const varA = createVar();
-    const varB = createVar();
+    const varA = Symbol();
+    const varB = Symbol();
 
     expect(assembleJs([
       'if(', varA, '!==0) {return ', varA, '*', varB, '}'

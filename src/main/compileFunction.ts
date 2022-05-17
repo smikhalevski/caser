@@ -1,5 +1,4 @@
 import {assembleJs} from './assembleJs';
-import {createVar} from './code-dsl';
 import {Binding, Code, Var} from './code-types';
 import {inverseMap} from './code-utils';
 import {createVarRenamer} from './createVarRenamer';
@@ -41,7 +40,7 @@ export function compileFunction<F extends Function>(argVars: Var[], code: Code, 
 
   const fnCode: Code[] = [];
   const arr: unknown[] = [];
-  const arrVar = createVar();
+  const arrVar = Symbol();
 
   // Dedupe bound values
   const valueMap = inverseMap(varMap);

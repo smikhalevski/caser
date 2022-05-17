@@ -13,13 +13,6 @@ try {
 
 const reArrayIndex = /^(?:0|[1-9]\d*)$/;
 
-/**
- * Creates the new variable placeholder.
- */
-export function createVar(description?: string | number): Var {
-  return Symbol(description);
-}
-
 export function varAssign(v: Var, value: Code): Code {
   return {type: CodeType.VAR_ASSIGN, var: v, children: toArray(value)};
 }

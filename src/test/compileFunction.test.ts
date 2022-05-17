@@ -1,4 +1,4 @@
-import {compileFunction, createVar} from '../main';
+import {compileFunction} from '../main';
 
 describe('compileFunction', () => {
 
@@ -7,50 +7,50 @@ describe('compileFunction', () => {
   });
 
   test('compiles a function with one argument', () => {
-    const argVar = createVar();
+    const argVar = Symbol();
 
     expect(compileFunction([argVar], ['return ', argVar, '+1'])(2)).toBe(3);
   });
 
   test('compiles a function with multiple arguments', () => {
-    const arg1Var = createVar();
-    const arg2Var = createVar();
-    const arg3Var = createVar();
+    const arg1Var = Symbol();
+    const arg2Var = Symbol();
+    const arg3Var = Symbol();
 
     expect(compileFunction([arg1Var, arg2Var, arg3Var], ['return ', arg1Var, '+', arg2Var, '+', arg3Var])(1, 2, 3)).toBe(6);
   });
 
   test('compiles a function with the single bound value', () => {
-    const boundVar = createVar();
+    const boundVar = Symbol();
 
     expect(compileFunction([], ['return ', boundVar, '()'], [[boundVar, () => 'ok']])()).toBe('ok');
   });
 
   test('compiles a function with multiple bound values', () => {
-    const bound1Var = createVar();
-    const bound2Var = createVar();
+    const bound1Var = Symbol();
+    const bound2Var = Symbol();
 
     expect(compileFunction([], ['return ', bound1Var, '()+', bound2Var, '()'], [[bound1Var, () => 3], [bound2Var, () => 7]])()).toBe(10);
   });
 
   test('compiles a function with repeated bound vars', () => {
-    const boundVar = createVar();
+    const boundVar = Symbol();
 
     expect(compileFunction([], ['return ', boundVar], [[boundVar, 111], [boundVar, 222]])()).toBe(222);
   });
 
   test('compiles a function with repeated bound values', () => {
-    const bound1Var = createVar();
-    const bound2Var = createVar();
+    const bound1Var = Symbol();
+    const bound2Var = Symbol();
 
     expect(compileFunction([], ['return ', bound1Var, '===', bound2Var], [[bound1Var, 111], [bound2Var, 111]])()).toBe(true);
   });
 
   test('compiles a function with arguments and bound values', () => {
-    const arg1Var = createVar();
-    const arg2Var = createVar();
-    const bound1Var = createVar();
-    const bound2Var = createVar();
+    const arg1Var = Symbol();
+    const arg2Var = Symbol();
+    const bound1Var = Symbol();
+    const bound2Var = Symbol();
 
     expect(compileFunction(
         [arg1Var, arg2Var],
