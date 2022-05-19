@@ -13,21 +13,21 @@ describe('assembleJs', () => {
     const aVar = Symbol();
     const bVar = Symbol();
 
-    expect(assembleJs([aVar, '=', bVar, '+', aVar])).toBe('a=b+a');
+    expect(assembleJs([aVar, '=', bVar, '+', aVar])).toBe('_0=_1+_0');
   });
 
   test('assembles var declaration', () => {
-    expect(assembleJs(varDeclare(Symbol()))).toBe('var a;');
-    expect(assembleJs(varDeclare(Symbol(), undefined))).toBe('var a;');
+    expect(assembleJs(varDeclare(Symbol()))).toBe('var _0;');
+    expect(assembleJs(varDeclare(Symbol(), undefined))).toBe('var _0;');
   });
 
   test('assembles var declaration with initial value', () => {
-    expect(assembleJs(varDeclare(Symbol(), '123'))).toBe('var a=123;');
+    expect(assembleJs(varDeclare(Symbol(), '123'))).toBe('var _0=123;');
   });
 
   test('assembles var assignment', () => {
-    expect(assembleJs(varAssign(Symbol(), '123'))).toBe('a=123;');
-    expect(assembleJs(varAssign(Symbol(), undefined))).toBe('a=undefined;');
+    expect(assembleJs(varAssign(Symbol(), '123'))).toBe('_0=123;');
+    expect(assembleJs(varAssign(Symbol(), undefined))).toBe('_0=undefined;');
   });
 
   test('readme', () => {
@@ -36,6 +36,6 @@ describe('assembleJs', () => {
 
     expect(assembleJs([
       'if(', varA, '!==0) {return ', varA, '*', varB, '}'
-    ])).toBe('if(a!==0) {return a*b}');
+    ])).toBe('if(_0!==0) {return _0*_1}');
   });
 });

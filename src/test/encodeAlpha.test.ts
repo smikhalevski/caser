@@ -16,4 +16,8 @@ describe('encodeAlpha', () => {
   test('encodes floating numbers', () => {
     expect(encodeAlpha(10.7)).toBe('k');
   });
+
+  test('does not encode as reserved keyword', () => {
+    expect(encodeAlpha(118)).toBe(undefined);
+  });
 });
