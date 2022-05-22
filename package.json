@@ -1,6 +1,6 @@
 {
   "name": "codedegen",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Fast and simple JS/TS codegen.",
   "main": "./lib/index-cjs.js",
   "module": "./lib/index.js",
