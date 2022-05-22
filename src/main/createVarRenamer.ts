@@ -1,13 +1,15 @@
 import {Var, VarRenamer} from './code-types';
-import {encodeAlpha} from './encodeAlpha';
 
 /**
  * Creates callback that returns a unique name for a variable.
  *
  * @param varMapping The iterable list of var-name pairs.
+ * @param encode Encodes the variable index as a valid name.
  * @returns The unique variable name.
+ *
+ * @see {@link encodeAlpha}
  */
-export function createVarRenamer(varMapping?: [Var, string][] | Iterable<[Var, string]>): VarRenamer {
+export function createVarRenamer(varMapping?: [Var, string][] | Iterable<[Var, string]>, encode?: (index: number) => string | undefined): VarRenamer {
 
   let index = 0;
 
@@ -19,8 +21,9 @@ export function createVarRenamer(varMapping?: [Var, string][] | Iterable<[Var, s
 
     if (!name) {
       do {
-        name = encodeAlpha(index++);
-      } while (names.has(name));
+        name = encode ? encode(index) : '_' + index;
+        ++index;
+      } while (!name || names.has(name));
 
       map.set(v, name);
     }

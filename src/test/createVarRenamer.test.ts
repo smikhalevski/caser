@@ -1,27 +1,27 @@
-import {createVar, createVarRenamer} from '../main';
+import {createVarRenamer} from '../main';
 
 describe('createVarRenamer', () => {
 
   test('returns unique name', () => {
     const varRenamer = createVarRenamer();
-    const var1 = createVar();
-    const var2 = createVar();
+    const var1 = Symbol();
+    const var2 = Symbol();
 
-    expect(varRenamer(var1)).toBe('a');
-    expect(varRenamer(var2)).toBe('b');
-    expect(varRenamer(var1)).toBe('a');
-    expect(varRenamer(var2)).toBe('b');
+    expect(varRenamer(var1)).toBe('_0');
+    expect(varRenamer(var2)).toBe('_1');
+    expect(varRenamer(var1)).toBe('_0');
+    expect(varRenamer(var2)).toBe('_1');
   });
 
   test('returns a predefined variable name', () => {
-    const var1 = createVar();
-    const var2 = createVar();
+    const var1 = Symbol();
+    const var2 = Symbol();
 
-    const varRenamer = createVarRenamer([[var1, 'b'], [var2, 'c']]);
+    const varRenamer = createVarRenamer([[var1, '_1'], [var2, '_2']]);
 
-    expect(varRenamer(var1)).toBe('b');
-    expect(varRenamer(var2)).toBe('c');
-    expect(varRenamer(createVar())).toBe('a');
-    expect(varRenamer(createVar())).toBe('d');
+    expect(varRenamer(var1)).toBe('_1');
+    expect(varRenamer(var2)).toBe('_2');
+    expect(varRenamer(Symbol())).toBe('_0');
+    expect(varRenamer(Symbol())).toBe('_3');
   });
 });

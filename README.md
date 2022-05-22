@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/smikhalevski/codegen/raw/master/meme.svg" width="200" alt="Feel Like A Sir">
+  <img src="https://github.com/smikhalevski/codegen/raw/master/meme.png" width="200" alt="Feel Like A Sir">
 </p>
 
 # codedegen [![build](https://github.com/smikhalevski/codedegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
@@ -25,7 +25,7 @@ const varB = Symbol();
 assembleJs([
   'if(', varA, '!==0) {return ', varA, '*', varB, '}'
 ]);
-// → if(a!==0) {return a*b}
+// → if(_0!==0) {return _0*_1}
 ```
 
 ## Compiling a function
@@ -69,13 +69,24 @@ const varB = Symbol();
 const varRenamer = createVarRenamer([[varA, 'yay']]);
 
 assembleJs([varA, '===', varB], varRenamer);
-// → yay===a
+// → yay===_0
 ```
 
 `VarRenamer` instance always return the same name for the same variable:
 
 ```ts
 varRenamer(varA); // → yay
+```
+
+You can provide an encoder to `createVarRenamer` that converts variable index into a valid JS identifier.
+
+```ts
+import {assembleJs, createVarRenamer, encodeAlpha} from 'codedegen';
+
+const varRenamer = createVarRenamer([], encodeAlpha);
+
+assembleJs([Symbol(), '>', Symbol()], varRenamer);
+// → a>b
 ```
 
 # DSL
