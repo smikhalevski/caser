@@ -71,7 +71,7 @@ const fn = compileFunction(
   [[varB, { fooBar: 456 }]],
 );
 
-fn(789); // ⮕ 1368
+fn(789); // ⮕ '1368'
 ```
 
 ## Naming variables
@@ -87,13 +87,13 @@ const varB = Symbol();
 const varRenamer = createVarRenamer([[varA, 'X']]);
 
 assembleJs([varA, '===', varB], varRenamer);
-// ⮕ X===a
+// ⮕ 'X===a'
 ```
 
 `VarRenamer` instance always return the same name for the same variable:
 
 ```ts
-varRenamer(varA); // ⮕ X
+varRenamer(varA); // ⮕ 'X'
 ```
 
 You can provide a name encoder to `createVarRenamer` that converts variable index into a valid JS identifier.
@@ -104,7 +104,7 @@ import { assembleJs, createVarRenamer } from 'codedegen';
 const varRenamer = createVarRenamer([], index => '_' + index);
 
 assembleJs([Symbol(), '>', Symbol()], varRenamer);
-// ⮕ _0>_1
+// ⮕ '_0>_1'
 ```
 
 # DSL
@@ -116,11 +116,11 @@ To ease the codegen there's a set of DSL functions which you can use anywhere in
 Returns a prop accessor code:
 
 ```ts
-propAccess('obj', 'foo'); // ⮕ obj.foo
+propAccess('obj', 'foo'); // ⮕ 'obj.foo'
 
-propAccess('obj', 9); // ⮕ obj[9]
+propAccess('obj', 9); // ⮕ 'obj[9]'
 
-propAccess('obj', 'foo bar', true); // ⮕ obj?.["foo bar"]
+propAccess('obj', 'foo bar', true); // ⮕ 'obj?.["foo bar"]'
 ```
 
 You can generate a nested property access code like this:
@@ -134,7 +134,7 @@ const varB = Symbol();
 assembleJs([
   varA, '=', propAcccess(propAccess(varB, 'fooBar', true), 10)
 ]);
-// ⮕ a=b?.fooBar[10]
+// ⮕ 'a=b?.fooBar[10]'
 ```
 
 ### `objectKey`
@@ -162,7 +162,7 @@ assembleJs([
   objectKey('Yes Sir!'), ':456,',
   '}',
 ]);
-// ⮕ {fooBar:123,"Yes Sir!":456,}
+// ⮕ '{fooBar:123,"Yes Sir!":456,}'
 ```
 
 ### `comment` and `docComment`
@@ -172,14 +172,7 @@ Return a code of a comment block:
 ```ts
 import { assembleJs } from 'codedegen';
 
-assembleJs(
-  docComment('Yes Sir,\nI Can Boogie')
-);
-// ⮕
-// /**
-//  * Yes Sir,
-//  * I Can Boogie
-//  */
+assembleJs(docComment('Yes Sir,\nI Can Boogie'));
 ```
 
 ### `varAssign`
@@ -190,10 +183,10 @@ Returns a variable assignment code:
 const varA = Symbol();
 const varB = Symbol();
 
-varAssign(varA, [varB]); // ⮕ a=b;
+varAssign(varA, [varB]); // ⮕ 'a=b;'
 
 varAssign(varA, [propAccess(varB, 'fooBar'), '/2']);
-// ⮕ a=b.fooBar/2
+// ⮕ 'a=b.fooBar/2'
 ```
 
 ### `varDeclare`
@@ -203,7 +196,7 @@ Returns a variable declaration code:
 ```ts
 const varA = Symbol();
 
-varDeclare(varA); // ⮕ var a;
+varDeclare(varA); // ⮕ 'var a;'
 
-varDeclare(varA, [123]); // ⮕ var a=123; 
+varDeclare(varA, [123]); // ⮕ 'var a=123;'
 ```
