@@ -1,24 +1,24 @@
-import {Code, CodeType, Var} from './code-types';
-import {toArray} from './code-utils';
+import { Code, Var } from './code-types';
+import { toArray } from './code-utils';
 
-const reLf = /\n/g;
+const lfRegex = /\n/g;
 
-let reIdentifier: RegExp;
+let identifierRegex: RegExp;
 
 try {
-  reIdentifier = /^[\p{Letter}_$][\p{Letter}\d_$]*$/u;
+  identifierRegex = /^[\p{Letter}_$][\p{Letter}\d_$]*$/u;
 } catch {
-  reIdentifier = /^[a-zA-Z_$][\w$]*$/;
+  identifierRegex = /^[a-zA-Z_$][\w$]*$/;
 }
 
-const reArrayIndex = /^(?:0|[1-9]\d*)$/;
+const integerRegex = /^(?:0|[1-9]\d*)$/;
 
 export function varAssign(v: Var, value: Code): Code {
-  return {type: CodeType.VAR_ASSIGN, var: v, children: toArray(value)};
+  return { type: 'varAssign', var: v, children: toArray(value) };
 }
 
 export function varDeclare(v: Var, value: Code = []): Code {
-  return {type: CodeType.VAR_DECLARE, var: v, children: toArray(value)};
+  return { type: 'varDeclare', var: v, children: toArray(value) };
 }
 
 /**
@@ -35,7 +35,9 @@ export function varDeclare(v: Var, value: Code = []): Code {
  * ```
  */
 export function objectKey(name: string | number): Code {
-  return typeof name === 'string' && !reIdentifier.test(name) && !reArrayIndex.test(name) ? JSON.stringify(name) : name;
+  return typeof name === 'string' && !identifierRegex.test(name) && !integerRegex.test(name)
+    ? JSON.stringify(name)
+    : name;
 }
 
 /**
@@ -54,7 +56,7 @@ export function objectKey(name: string | number): Code {
  * @param optional If `true` then optional chaining syntax is used.
  */
 export function propAccess(code: Code, name: Var | string | number, optional?: boolean): Code {
-  if (typeof name === 'string' && reIdentifier.test(name)) {
+  if (typeof name === 'string' && identifierRegex.test(name)) {
     return [code, optional ? '?.' : '.', name];
   }
   return [code, optional ? '?.[' : '[', typeof name === 'symbol' ? name : objectKey(name), ']'];
@@ -64,12 +66,12 @@ export function propAccess(code: Code, name: Var | string | number, optional?: b
  * Returns a doc comment code.
  */
 export function docComment(str: unknown): Code {
-  return str == null || str === '' ? '' : '\n/**\n * ' + String(str).replace(reLf, '\n * ') + '\n */\n';
+  return str == null || str === '' ? '' : '\n/**\n * ' + String(str).replace(lfRegex, '\n * ') + '\n */\n';
 }
 
 /**
  * Returns a comment code.
  */
 export function comment(str: unknown): Code {
-  return str == null || str === '' ? '' : '// ' + String(str).replace(reLf, '\n// ') + '\n';
+  return str == null || str === '' ? '' : '// ' + String(str).replace(lfRegex, '\n// ') + '\n';
 }

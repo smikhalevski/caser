@@ -1,7 +1,6 @@
-import {assembleJs, comment, docComment, objectKey, propAccess} from '../main';
+import { assembleJs, comment, docComment, objectKey, propAccess } from '../main';
 
 describe('objectKey', () => {
-
   test('compiles identifier', () => {
     expect(assembleJs(objectKey('okay'))).toBe('okay');
     expect(assembleJs(objectKey('$okay'))).toBe('$okay');
@@ -19,7 +18,6 @@ describe('objectKey', () => {
 });
 
 describe('propAccess', () => {
-
   test('compiles identifier', () => {
     expect(assembleJs(propAccess('a', 'okay'))).toBe('a.okay');
     expect(assembleJs(propAccess('a', '$okay'))).toBe('a.$okay');
@@ -45,7 +43,6 @@ describe('propAccess', () => {
 });
 
 describe('docComment', () => {
-
   test('returns an empty string for an empty comment', () => {
     expect(assembleJs(docComment(null))).toBe('');
     expect(assembleJs(docComment(undefined))).toBe('');
@@ -63,7 +60,6 @@ describe('docComment', () => {
 });
 
 describe('comment', () => {
-
   test('returns an empty string for an empty comment', () => {
     expect(assembleJs(comment(null))).toBe('');
     expect(assembleJs(comment(undefined))).toBe('');

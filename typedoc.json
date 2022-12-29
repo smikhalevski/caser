@@ -1,0 +1,6 @@
+{
+  "name": "codedegen",
+  "out": "./docs",
+  "includeVersion": true,
+  "cleanOutputDir": true
+}
