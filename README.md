@@ -1,4 +1,4 @@
-# codedegen [![build](https://github.com/smikhalevski/codedegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
+# codedegen 🗡 [![build](https://github.com/smikhalevski/codedegen/actions/workflows/master.yml/badge.svg?branch=master&event=push)](https://github.com/smikhalevski/codegen/actions/workflows/master.yml)
 
 Fast and simple JS/TS code generator.
 
@@ -13,7 +13,7 @@ npm install --save-prod codedegen
 The code is represented via arrays nested at arbitrary depth:
 
 ```ts
-import { Code, assembleJs } from 'codedegen';
+import { assembleJs, Code } from 'codedegen';
 
 const code: Code = ['console.log(', ['"Hello"'], ')'];
 
@@ -24,7 +24,7 @@ assembleJs(code);
 You can use primitives as values:
 
 ```ts
-const code: Code = [1, '+', 2];
+const code = [1, '+', 2];
 
 assembleJs(code);
 // ⮕ '1+2'
@@ -36,7 +36,7 @@ Symbols represent variables:
 const varA = Symbol();
 const varB = Symbol();
 
-const code: Code = [
+const code = [
   'if(', varA, '!==0){',
   'return ', varA, '*', varB,
   '}'
@@ -44,6 +44,63 @@ const code: Code = [
 
 assembleJs(code);
 // ⮕ 'if(a!==0){return a*b}'
+```
+
+## Naming variables
+
+Create a named variable:
+
+```ts
+import { assembleJs, createVar, Code } from 'codedegen';
+
+const varFoo = createVar('foo');
+
+assembleJs([varFoo, '!==0']);
+// ⮕ 'foo!==0'
+```
+
+If there are multiple variables with the same name, they would still have different names in the generated code:
+
+```ts
+const varFoo1 = createVar('foo');
+const varFoo2 = createVar('foo');
+
+assembleJs([varFoo1, '!==', varFoo2]);
+// ⮕ 'foo!==foo2'
+```
+
+## Variable renamer
+
+You can pass `VarRenamer` callback to `assembleJs` to have even more control on how variables are named:
+
+```ts
+import { assembleJs, createVarRenamer } from 'codedegen';
+
+const varA = Symbol();
+const varB = Symbol();
+
+const varRenamer = createVarRenamer([[varA, 'X']]);
+
+assembleJs([varA, '===', varB], varRenamer);
+// ⮕ 'X===a'
+```
+
+`VarRenamer` instance always return the same name for the same variable:
+
+```ts
+varRenamer(varA) === varRenamer(varA);
+// ⮕ true
+```
+
+You can provide a name encoder to `createVarRenamer` that converts variable index into a valid JS identifier.
+
+```ts
+import { assembleJs, createVarRenamer } from 'codedegen';
+
+const varRenamer = createVarRenamer([], index => '_' + index);
+
+assembleJs([Symbol(), '>', Symbol()], varRenamer);
+// ⮕ '_0>_1'
 ```
 
 ## Compiling a function
@@ -73,63 +130,6 @@ const fn = compileFunction(
 
 fn(789);
 // ⮕ '1368'
-```
-
-## Naming variables
-
-Create a named variable:
-
-```ts
-import { assembleJs, createVar, Code } from 'codedegen';
-
-const varFoo = createVar('foo');
-
-assembleJs([varFoo, '!==0']);
-// ⮕ 'foo!==0'
-```
-
-If there are multiple variables with the same name, they would still have different names in the generated code:
-
-```ts
-const varFoo1 = createVar('foo');
-const varFoo2 = createVar('foo');
-
-assembleJs([varFoo1, '!==', varFoo2]);
-// ⮕ 'foo!==foo2'
-```
-
-## Variable renamer
-
-If you want a specific variable to have a specific name, you can pass a `VarRenamer` to `assembleJs`:
-
-```ts
-import { assembleJs, createVarRenamer } from 'codedegen';
-
-const varA = Symbol();
-const varB = Symbol();
-
-const varRenamer = createVarRenamer([[varA, 'X']]);
-
-assembleJs([varA, '===', varB], varRenamer);
-// ⮕ 'X===a'
-```
-
-`VarRenamer` instance always return the same name for the same variable:
-
-```ts
-varRenamer(varA);
-// ⮕ 'X'
-```
-
-You can provide a name encoder to `createVarRenamer` that converts variable index into a valid JS identifier.
-
-```ts
-import { assembleJs, createVarRenamer } from 'codedegen';
-
-const varRenamer = createVarRenamer([], index => '_' + index);
-
-assembleJs([Symbol(), '>', Symbol()], varRenamer);
-// ⮕ '_0>_1'
 ```
 
 # DSL
