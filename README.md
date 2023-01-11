@@ -71,7 +71,8 @@ const fn = compileFunction(
   [[varB, { fooBar: 456 }]],
 );
 
-fn(789); // ⮕ '1368'
+fn(789);
+// ⮕ '1368'
 ```
 
 ## Naming variables
@@ -93,7 +94,8 @@ assembleJs([varA, '===', varB], varRenamer);
 `VarRenamer` instance always return the same name for the same variable:
 
 ```ts
-varRenamer(varA); // ⮕ 'X'
+varRenamer(varA);
+// ⮕ 'X'
 ```
 
 You can provide a name encoder to `createVarRenamer` that converts variable index into a valid JS identifier.
@@ -116,11 +118,14 @@ To ease the codegen there's a set of DSL functions which you can use anywhere in
 Returns a prop accessor code:
 
 ```ts
-propAccess('obj', 'foo'); // ⮕ 'obj.foo'
+propAccess('obj', 'foo');
+// ⮕ 'obj.foo'
 
-propAccess('obj', 9); // ⮕ 'obj[9]'
+propAccess('obj', 9);
+// ⮕ 'obj[9]'
 
-propAccess('obj', 'foo bar', true); // ⮕ 'obj?.["foo bar"]'
+propAccess('obj', 'foo bar', true);
+// ⮕ 'obj?.["foo bar"]'
 ```
 
 You can generate a nested property access code like this:
@@ -142,13 +147,17 @@ assembleJs([
 Returns the code of an object key:
 
 ```ts
-objectKey('foo bar'); // ⮕ '"foo bar"'
+objectKey('foo bar');
+// ⮕ '"foo bar"'
 
-objectKey('fooBar'); // ⮕ 'fooBar'
+objectKey('fooBar');
+// ⮕ 'fooBar'
 
-objectKey('0'); // ⮕ '0'
+objectKey('0');
+// ⮕ '0'
 
-objectKey('0123'); // ⮕ '"0123"'
+objectKey('0123');
+// ⮕ '"0123"'
 ```
 
 For example, to create an object you can:
@@ -196,7 +205,9 @@ Returns a variable declaration code:
 ```ts
 const varA = Symbol();
 
-varDeclare(varA); // ⮕ 'var a;'
+varDeclare(varA);
+// ⮕ 'var a;'
 
-varDeclare(varA, [123]); // ⮕ 'var a=123;'
+varDeclare(varA, [123]);
+// ⮕ 'var a=123;'
 ```
