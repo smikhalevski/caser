@@ -44,7 +44,7 @@ export function compileFunction<F extends Function>(
 
   const fnCode: Code[] = [];
   const arr: unknown[] = [];
-  const arrVar = Symbol();
+  const arrVar: Var = { type: 'var' };
 
   // Dedupe bound values
   const valueMap = inverseMap(varMap);

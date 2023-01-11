@@ -3,6 +3,8 @@ import { encodeAlphaName } from '../main';
 describe('encodeAlphaName', () => {
   test('encodes numbers as latin letters', () => {
     expect(encodeAlphaName(0)).toBe('a');
+    expect(encodeAlphaName(9)).toBe('j');
+    expect(encodeAlphaName(10)).toBe('k');
     expect(encodeAlphaName(25)).toBe('z');
 
     expect(encodeAlphaName(26)).toBe('aa');

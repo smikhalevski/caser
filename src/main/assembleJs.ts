@@ -13,8 +13,8 @@ export function assembleJs(code: Code, varRenamer = createVarRenamer()): string 
     return varRenamer(code);
   }
 
-  if (!code || typeof code !== 'object') {
-    return String(code);
+  if (code === null || typeof code !== 'object') {
+    return '' + code;
   }
 
   if (Array.isArray(code)) {
@@ -25,11 +25,14 @@ export function assembleJs(code: Code, varRenamer = createVarRenamer()): string 
     return src;
   }
 
+  if (code.type === 'var') {
+    return varRenamer(code);
+  }
+
   if (code.type === 'varAssign') {
     return varRenamer(code.var) + '=' + assembleJs(code.children, varRenamer) + ';';
   }
 
-  // Var declaration
   let src = 'var ' + varRenamer(code.var);
 
   if (code.children.length === 0) {

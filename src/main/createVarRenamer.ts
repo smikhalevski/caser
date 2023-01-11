@@ -16,13 +16,30 @@ export function createVarRenamer(
 ): VarRenamer {
   let index = 0;
 
-  const map = new Map(varNameMapping);
-  const names = new Set(map.values());
+  const nameMap = new Map(varNameMapping);
+  const names = new Set(nameMap.values());
+  const varCounters = new Map<string, number>();
 
   return v => {
-    let name = map.get(v);
+    let name = nameMap.get(v);
 
     if (name) {
+      return name;
+    }
+
+    if (typeof v === 'object' && v.name) {
+      name = v.name;
+
+      let counter = varCounters.get(name);
+
+      if (counter !== undefined) {
+        name += counter++;
+      } else {
+        counter = 2;
+      }
+
+      nameMap.set(v, name);
+      varCounters.set(v.name, counter);
       return name;
     }
 
@@ -31,7 +48,7 @@ export function createVarRenamer(
       ++index;
     } while (!name || names.has(name));
 
-    map.set(v, name);
+    nameMap.set(v, name);
 
     return name;
   };

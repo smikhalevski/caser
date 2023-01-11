@@ -1,7 +1,12 @@
 /**
  * The placeholder that denotes a variable reference in a code fragment.
  */
-export type Var = symbol;
+export type Var = VarObject | symbol;
+
+export interface VarObject {
+  type: 'var';
+  name?: string;
+}
 
 /**
  * The variable declaration.
