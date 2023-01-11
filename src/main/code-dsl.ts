@@ -1,4 +1,4 @@
-import { Code, Var } from './code-types';
+import { Code, Var, VarObject } from './code-types';
 import { toArray } from './code-utils';
 
 const reLf = /\n/g;
@@ -12,6 +12,15 @@ try {
 }
 
 const reInt = /^(?:0|[1-9]\d*)$/;
+
+/**
+ * Creates a new {@linkcode VarObject}.
+ *
+ * @param name The name of the variable.
+ */
+export function createVar(name?: string): VarObject {
+  return { type: 'var', name };
+}
 
 export function varAssign(v: Var, value: Code): Code {
   return { type: 'varAssign', var: v, children: toArray(value) };

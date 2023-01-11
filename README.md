@@ -40,7 +40,7 @@ const code: Code = [
   'if(', varA, '!==0){',
   'return ', varA, '*', varB,
   '}'
-]
+];
 
 assembleJs(code);
 // ⮕ 'if(a!==0){return a*b}'
@@ -76,6 +76,29 @@ fn(789);
 ```
 
 ## Naming variables
+
+Create a named variable:
+
+```ts
+import { assembleJs, createVar, Code } from 'codedegen';
+
+const varFoo = createVar('foo');
+
+assembleJs([varFoo, '!==0']);
+// ⮕ 'foo!==0'
+```
+
+If there are multiple variables with the same name, they would still have different names in the generated code:
+
+```ts
+const varFoo1 = createVar('foo');
+const varFoo2 = createVar('foo');
+
+assembleJs([varFoo1, '!==', varFoo2]);
+// ⮕ 'foo!==foo2'
+```
+
+## Variable renamer
 
 If you want a specific variable to have a specific name, you can pass a `VarRenamer` to `assembleJs`:
 
@@ -192,7 +215,8 @@ Returns a variable assignment code:
 const varA = Symbol();
 const varB = Symbol();
 
-varAssign(varA, [varB]); // ⮕ 'a=b;'
+varAssign(varA, [varB]);
+// ⮕ 'a=b;'
 
 varAssign(varA, [propAccess(varB, 'fooBar'), '/2']);
 // ⮕ 'a=b.fooBar/2'
