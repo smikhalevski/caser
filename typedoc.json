@@ -1,0 +1,6 @@
+{
+  "name": "codedegen",
+  "includeVersion": true,
+  "disableSources": true,
+  "out": "./docs"
+}

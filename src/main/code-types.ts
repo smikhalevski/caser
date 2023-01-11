@@ -1,21 +1,27 @@
 /**
  * The placeholder that denotes a variable reference in a code fragment.
  */
-export type Var = symbol;
+export type Var = VarObject | symbol;
 
-export const enum CodeType {
-  VAR_DECLARE,
-  VAR_ASSIGN,
+export interface VarObject {
+  type: 'var';
+  name?: string;
 }
 
+/**
+ * The variable declaration.
+ */
 export interface VarDeclare {
-  type: CodeType.VAR_DECLARE;
+  type: 'varDeclare';
   var: Var;
   children: Code[];
 }
 
+/**
+ * The variable assignment.
+ */
 export interface VarAssign {
-  type: CodeType.VAR_ASSIGN;
+  type: 'varAssign';
   var: Var;
   children: Code[];
 }
@@ -34,8 +40,3 @@ export type Binding = [Var, unknown];
  * Returns the unique variable name.
  */
 export type VarRenamer = (v: Var) => string;
-
-export interface CodeBindings {
-  code: Code;
-  bindings?: Binding[];
-}

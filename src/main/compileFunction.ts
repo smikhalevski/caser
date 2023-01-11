@@ -1,7 +1,7 @@
-import {assembleJs} from './assembleJs';
-import {Binding, Code, Var} from './code-types';
-import {inverseMap} from './code-utils';
-import {createVarRenamer} from './createVarRenamer';
+import { assembleJs } from './assembleJs';
+import { Binding, Code, Var } from './code-types';
+import { inverseMap } from './code-utils';
+import { createVarRenamer } from './createVarRenamer';
 
 /**
  * Compiles a function from the given code.
@@ -28,7 +28,11 @@ import {createVarRenamer} from './createVarRenamer';
  * @param bindings The list of variable-value pairs that are bound to the output function.
  * @returns The compiled function.
  */
-export function compileFunction<F extends Function>(argVars: Var[], code: Code, bindings?: Binding[] | Iterable<Binding>): F {
+export function compileFunction<F extends Function>(
+  argVars: Var[],
+  code: Code,
+  bindings?: Binding[] | Iterable<Binding>
+): F {
   const varRenamer = createVarRenamer();
 
   // Dedupe bound vars
@@ -40,7 +44,7 @@ export function compileFunction<F extends Function>(argVars: Var[], code: Code, 
 
   const fnCode: Code[] = [];
   const arr: unknown[] = [];
-  const arrVar = Symbol();
+  const arrVar: Var = { type: 'var' };
 
   // Dedupe bound values
   const valueMap = inverseMap(varMap);
@@ -60,7 +64,9 @@ export function compileFunction<F extends Function>(argVars: Var[], code: Code, 
 
   fnCode.push('){', code, '}');
 
-  const fnSrc = assembleJs(fnCode, (v) => varRenamer(varMap.has(v) ? valueMap.get(varMap.get(v))! : v));
+  const fnSrc = assembleJs(fnCode, varName =>
+    varRenamer(varMap.has(varName) ? valueMap.get(varMap.get(varName))! : varName)
+  );
 
   return Function.call(undefined, varRenamer(arrVar), fnSrc)(arr);
 }

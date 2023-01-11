@@ -1,32 +1,54 @@
-import {Var, VarRenamer} from './code-types';
+import { Var, VarRenamer } from './code-types';
+import { encodeAlphaName } from './encodeAlphaName';
 
 /**
  * Creates callback that returns a unique name for a variable.
  *
- * @param varMapping The iterable list of var-name pairs.
- * @param encode Encodes the variable index as a valid name.
+ * @param varNameMapping The iterable list of var-name pairs.
+ * @param encodeName Encodes the variable index as a valid name.
  * @returns The unique variable name.
  *
- * @see {@link encodeAlpha}
+ * @see {@linkcode encodeAlphaName}
  */
-export function createVarRenamer(varMapping?: [Var, string][] | Iterable<[Var, string]>, encode?: (index: number) => string | undefined): VarRenamer {
-
+export function createVarRenamer(
+  varNameMapping?: [Var, string][] | Iterable<[Var, string]>,
+  encodeName = encodeAlphaName
+): VarRenamer {
   let index = 0;
 
-  const map = new Map(varMapping);
-  const names = new Set(map.values());
+  const nameMap = new Map(varNameMapping);
+  const names = new Set(nameMap.values());
+  const varCounters = new Map<string, number>();
 
-  return (v) => {
-    let name = map.get(v);
+  return v => {
+    let name = nameMap.get(v);
 
-    if (!name) {
-      do {
-        name = encode ? encode(index) : '_' + index;
-        ++index;
-      } while (!name || names.has(name));
-
-      map.set(v, name);
+    if (name) {
+      return name;
     }
+
+    if (typeof v === 'object' && v.name) {
+      name = v.name;
+
+      let counter = varCounters.get(name);
+
+      if (counter !== undefined) {
+        name += counter++;
+      } else {
+        counter = 2;
+      }
+
+      nameMap.set(v, name);
+      varCounters.set(v.name, counter);
+      return name;
+    }
+
+    do {
+      name = encodeName(index);
+      ++index;
+    } while (!name || names.has(name));
+
+    nameMap.set(v, name);
 
     return name;
   };

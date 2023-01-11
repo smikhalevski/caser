@@ -1,5 +1,5 @@
-import {Code, CodeType} from './code-types';
-import {createVarRenamer} from './createVarRenamer';
+import { Code } from './code-types';
+import { createVarRenamer } from './createVarRenamer';
 
 /**
  * Assembles code fragment into a compilable code string.
@@ -13,8 +13,8 @@ export function assembleJs(code: Code, varRenamer = createVarRenamer()): string 
     return varRenamer(code);
   }
 
-  if (!code || typeof code !== 'object') {
-    return String(code);
+  if (code === null || typeof code !== 'object') {
+    return '' + code;
   }
 
   if (Array.isArray(code)) {
@@ -25,21 +25,24 @@ export function assembleJs(code: Code, varRenamer = createVarRenamer()): string 
     return src;
   }
 
-  const {children} = code;
-
-  if (code.type === CodeType.VAR_ASSIGN) {
-    return varRenamer(code.var) + '=' + assembleJs(children, varRenamer) + ';';
+  if (code.type === 'var') {
+    return varRenamer(code);
   }
 
-  // Var declaration
+  if (code.type === 'varAssign') {
+    return varRenamer(code.var) + '=' + assembleJs(code.children, varRenamer) + ';';
+  }
+
   let src = 'var ' + varRenamer(code.var);
 
-  if (children.length) {
-    const valueSrc = assembleJs(children, varRenamer);
+  if (code.children.length === 0) {
+    return src + ';';
+  }
 
-    if (valueSrc) {
-      src += '=' + valueSrc;
-    }
+  const valueSrc = assembleJs(code.children, varRenamer);
+
+  if (valueSrc) {
+    src += '=' + valueSrc;
   }
   return src + ';';
 }
